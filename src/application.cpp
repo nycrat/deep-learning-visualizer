@@ -13,7 +13,7 @@ const int GRID_SIZE{28};
 
 } // namespace
 
-namespace avah {
+namespace dl_visualizer {
 
 application::application() {
   initialize_glfw();
@@ -151,4 +151,4 @@ void application::key_callback(GLFWwindow *window, int key, int scancode,
   }
 }
 
-} // namespace avah
+} // namespace dl_visualizer

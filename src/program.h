@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <filesystem>
 
-namespace avah {
+namespace dl_visualizer {
 
 /// Represents an OpenGL shader program.
 class program {
@@ -26,4 +26,4 @@ private:
   std::uint32_t id_;
 };
 
-} // namespace avah
+} // namespace dl_visualizer

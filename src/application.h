@@ -10,7 +10,7 @@
 #include "idx_matrix.h"
 #include "program.h"
 
-namespace avah {
+namespace dl_visualizer {
 
 class application {
 public:
@@ -37,10 +37,10 @@ private:
   std::uint32_t instance_vbo_{};
   std::unique_ptr<program> square_program_{nullptr};
 
-  avah::idx_matrix training_labels_{"data/mnist/train-labels.idx"};
-  avah::idx_matrix training_images_{"data/mnist/train-images.idx"};
+  dl_visualizer::idx_matrix training_labels_{"data/mnist/train-labels.idx"};
+  dl_visualizer::idx_matrix training_images_{"data/mnist/train-images.idx"};
 
   std::size_t digit_index_{};
 };
 
-} // namespace avah
+} // namespace dl_visualizer

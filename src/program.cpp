@@ -48,7 +48,7 @@ void check_linking_errors(std::uint32_t program) {
 
 } // namespace
 
-namespace avah {
+namespace dl_visualizer {
 
 program::program(const std::filesystem::path &vertex_shader_path,
                  const std::filesystem::path &fragment_shader_path) {
@@ -92,4 +92,4 @@ std::uint32_t program::id() const {
   return id_;
 }
 
-} // namespace avah
+} // namespace dl_visualizer
