@@ -1,27 +1,32 @@
-CXX=g++
-CXXFLAGS=-Wall -g -std=c++23
-LDFLAGS=-Llib -lglfw3
-INCLUDES=-Iinclude
+CXX      := g++
+CXXFLAGS := -Wall -g -std=c++23 -MMD -MP
+LDFLAGS  := -Llib -lglfw3
+INCLUDES := -Iinclude
 
-SRCS=src/*.cpp src/glad.c
-HEADERS=src/*.h
-
-TARGET=bin/main
-
-OS=$(shell uname)
+OS := $(shell uname)
 
 # Specific flags for MacOS
 ifeq ($(OS),Darwin)
-		LDFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
-		CXX=clang++
-		CXXFLAGS += -x c++
+		CXX := clang++
+		CXXFLAGS := $(CXXFLAGS) -x c++
+		LDFLAGS := $(LDFLAGS) -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
 endif
+
+SRCS := $(shell find src -name "*.cpp")
+OBJS := $(SRCS:%.cpp=bin/%.o)
+DEPS := $(OBJS:%.o=%.d)
+
+TARGET=bin/main
 
 all: build
 
-$(TARGET): $(SRCS) $(HEADERS)
-	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $(SRCS) $(INCLUDES) $(LDFLAGS) -o $(TARGET)
+$(TARGET): $(OBJS)
+	@mkdir -p $(dir $@)
+	$(CXX) $^ $(LDFLAGS) -o $(TARGET)
+
+bin/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 .PHONY: build
 build: $(TARGET)
@@ -33,3 +38,5 @@ run: $(TARGET)
 .PHONY: clean
 clean:
 	rm -rf bin
+
+-include $(DEPS)
