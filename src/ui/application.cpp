@@ -13,7 +13,7 @@ const int GRID_SIZE{28};
 
 } // namespace
 
-namespace dl_visualizer {
+namespace ui {
 
 application::application() {
   initialize_glfw();
@@ -151,4 +151,4 @@ void application::key_callback(GLFWwindow *window, int key, int scancode,
   }
 }
 
-} // namespace dl_visualizer
+} // namespace ui

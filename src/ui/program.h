@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <filesystem>
 
-namespace dl_visualizer {
+namespace ui {
 
 /// Represents an OpenGL shader program.
 class program {
@@ -26,4 +26,4 @@ private:
   std::uint32_t id_;
 };
 
-} // namespace dl_visualizer
+} // namespace ui

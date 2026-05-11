@@ -2,3 +2,4 @@
 BasedOnStyle: LLVM
 Standard: Latest
 AllowShortFunctionsOnASingleLine: None
+ReflowComments: false

@@ -6,7 +6,7 @@
 #include <span>
 #include <vector>
 
-namespace dl_visualizer {
+namespace dl {
 
 /// Represents matrix data from an IDX file as a one dimensional vector.
 ///
@@ -26,4 +26,4 @@ private:
   std::vector<uint8_t> data_{};
 };
 
-} // namespace dl_visualizer
+} // namespace dl

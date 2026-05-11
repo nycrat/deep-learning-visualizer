@@ -48,7 +48,7 @@ void check_linking_errors(std::uint32_t program) {
 
 } // namespace
 
-namespace dl_visualizer {
+namespace ui {
 
 program::program(const std::filesystem::path &vertex_shader_path,
                  const std::filesystem::path &fragment_shader_path) {

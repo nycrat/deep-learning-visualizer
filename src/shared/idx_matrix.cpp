@@ -7,7 +7,7 @@
 #include <numeric>
 #include <stdexcept>
 
-namespace dl_visualizer {
+namespace dl {
 
 idx_matrix::idx_matrix(const std::filesystem::path &file_path) {
   std::ifstream file{file_path, std::ios::binary};
@@ -64,4 +64,4 @@ std::size_t idx_matrix::cols() const {
   return cols_;
 }
 
-} // namespace dl_visualizer
+} // namespace dl
