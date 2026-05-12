@@ -14,6 +14,7 @@ struct layer {
   std::size_t n() const;
 
   Eigen::VectorXf activations{};
+  Eigen::VectorXf z_values{};
   Eigen::VectorXf biases{};
   Eigen::MatrixXf weights{};
 };

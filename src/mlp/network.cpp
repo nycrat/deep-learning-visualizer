@@ -1,6 +1,5 @@
 #include "network.h"
 
-#include <algorithm>
 #include <cmath>
 #include <random>
 #include <ranges>
@@ -18,7 +17,7 @@ float get_random(float min = 0.0f, float max = 1.0f) {
   return distr(gen);
 }
 
-const float learning_rate = 0.05f;
+const float learning_rate = 3.00f;
 
 } // namespace
 
@@ -51,7 +50,6 @@ void network::initialize_weights() {
 void network::backpropagate(std::span<const Eigen::VectorXf> inputs,
                             std::span<const Eigen::VectorXf> outputs) {
   for (auto &gradient_layer : gradient_layers_) {
-    gradient_layer.activations.setZero();
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
   }
@@ -78,53 +76,30 @@ const Eigen::VectorXf &network::output() const {
 
 void network::backpropagate_once(const Eigen::VectorXf &input,
                                  const Eigen::VectorXf &output) {
-  gradient_layers_.back().activations = output;
   layers_.front().activations = input;
   update();
+
+  // for first layer, dc_da = 2 * (a - y)
+  gradient_layers_.back().activations =
+      2 * (layers_.back().activations - output);
 
   for (std::size_t i{layers_.size() - 1}; i >= 1; i--) {
     auto &layer = layers_[i];
     auto &layer_prev = layers_[i - 1];
-    auto &gradient_layer = gradient_layers_[i];
-    auto &gradient_layer_prev = gradient_layers_[i - 1];
+    auto &grad = gradient_layers_[i];
+    auto &grad_prev = gradient_layers_[i - 1];
+
+    auto dc_da = grad.activations;
+    auto da_dz =
+        layer.z_values.unaryExpr([](float z) { return shared::d_sigmoid(z); });
+    Eigen::VectorXf delta = dc_da.array() * da_dz.array();
 
     // calcuate gradient for weight and bias for current layer
-    for (std::size_t j{0}; j < layer.n(); j++) {
-      float a = layer.activations(j);
-      float y = gradient_layer.activations(j);
-      float z = shared::inv_sigmoid(a);
-
-      float dc_da = 2 * (a - y);
-      float da_dz = shared::d_sigmoid(z);
-
-      for (std::size_t k{0}; k < layer_prev.n(); k++) {
-        float dz_dw = layer_prev.activations(k);
-        float dc_dw = dc_da * da_dz * dz_dw;
-
-        gradient_layer.weights(j, k) += dc_dw;
-      }
-
-      float dz_db = 1.0f;
-      float dc_db = dc_da * da_dz * dz_db;
-      gradient_layer.biases(j) += dc_db;
-    }
+    grad.weights.noalias() += delta * layer_prev.activations.transpose();
+    grad.biases += delta;
 
     // calculate gradient for neuron activation of previous layer
-    for (std::size_t k{0}; k < layer_prev.n(); k++) {
-      float dc_da_minus = 0.0f;
-      for (std::size_t j{0}; j < layer.n(); j++) {
-        float a = layer.activations(j);
-        float y = gradient_layer.activations(j);
-        float z = shared::inv_sigmoid(a);
-
-        float dc_da = 2 * (a - y);
-        float da_dz = shared::d_sigmoid(z);
-        float dz_da_minus = layer.weights(j, k);
-        dc_da_minus += dc_da * da_dz * dz_da_minus;
-      }
-      gradient_layer_prev.activations(k) =
-          layer_prev.activations(k) - learning_rate * dc_da_minus;
-    }
+    grad_prev.activations.noalias() = layer.weights.transpose() * delta;
   }
 }
 
