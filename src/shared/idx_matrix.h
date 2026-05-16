@@ -6,11 +6,12 @@
 #include <span>
 #include <vector>
 
-namespace dl {
+namespace shared {
 
 /// Represents matrix data from an IDX file as a one dimensional vector.
 ///
 /// @see https://www.fon.hum.uva.nl/praat/manual/IDX_file_format.html
+/// @note Parses vectors as row vectors unlike the resource above states
 class idx_matrix {
 public:
   /// Constructs an IDX matrix from a file

@@ -17,7 +17,7 @@ float get_random(float min = 0.0f, float max = 1.0f) {
   return distr(gen);
 }
 
-const float learning_rate = 3.00f;
+const float learning_rate = 0.002f;
 
 } // namespace
 
@@ -47,21 +47,25 @@ void network::initialize_weights() {
   }
 }
 
-void network::backpropagate(std::span<const Eigen::VectorXf> inputs,
-                            std::span<const Eigen::VectorXf> outputs) {
+void network::backpropagate(const Eigen::MatrixXf &inputs,
+                            const Eigen::MatrixXf &outputs) {
   for (auto &gradient_layer : gradient_layers_) {
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
   }
 
-  for (auto &&[input, output] : std::views::zip(inputs, outputs)) {
-    backpropagate_once(input, output);
+  for (std::size_t i{0}; i < inputs.rows(); i++) {
+    backpropagate_once(inputs.row(i), outputs.row(i));
   }
 
   for (auto &&[layer, gradient] : std::views::zip(layers_, gradient_layers_)) {
-    layer.biases -= learning_rate * gradient.biases / inputs.size();
-    layer.weights -= learning_rate * gradient.weights / inputs.size();
+    layer.biases -= learning_rate * gradient.biases / inputs.rows();
+    layer.weights -= learning_rate * gradient.weights / inputs.rows();
   }
+}
+
+void network::set_input(const Eigen::VectorXf &input) {
+  layers_.front().activations = input;
 }
 
 void network::update() {

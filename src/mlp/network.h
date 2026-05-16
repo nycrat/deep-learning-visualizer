@@ -25,9 +25,10 @@ public:
   /// @see https://en.wikipedia.org/wiki/Backpropagation
   /// @see https://youtu.be/Ilg3gGewQ5U
   /// @see https://youtu.be/tIeHLnjs5U8
-  void backpropagate(std::span<const Eigen::VectorXf> inputs,
-                     std::span<const Eigen::VectorXf> outputs);
+  void backpropagate(const Eigen::MatrixXf &inputs,
+                     const Eigen::MatrixXf &outputs);
 
+  void set_input(const Eigen::VectorXf &input);
   void update();
 
   const Eigen::VectorXf &output() const;

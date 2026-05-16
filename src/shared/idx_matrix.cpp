@@ -7,7 +7,7 @@
 #include <numeric>
 #include <stdexcept>
 
-namespace dl {
+namespace shared {
 
 idx_matrix::idx_matrix(const std::filesystem::path &file_path) {
   std::ifstream file{file_path, std::ios::binary};
@@ -38,15 +38,9 @@ idx_matrix::idx_matrix(const std::filesystem::path &file_path) {
     }
   }
 
-  // Special case for 1 dimension, read as row vector
-  if (dimensions == 1) {
-    rows_ = 1;
-    cols_ = dimension_sizes[0];
-  } else {
-    rows_ = dimension_sizes[0];
-    cols_ = std::accumulate(dimension_sizes.begin() + 1, dimension_sizes.end(),
-                            std::size_t{1}, std::multiplies<>());
-  }
+  rows_ = dimension_sizes[0];
+  cols_ = std::accumulate(dimension_sizes.begin() + 1, dimension_sizes.end(),
+                          std::size_t{1}, std::multiplies<>());
 
   data_ = std::vector<uint8_t>(rows_ * cols_);
   file.read(reinterpret_cast<char *>(this->data_.data()), rows_ * cols_);
@@ -64,4 +58,4 @@ std::size_t idx_matrix::cols() const {
   return cols_;
 }
 
-} // namespace dl
+} // namespace shared

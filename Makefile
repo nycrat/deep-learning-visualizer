@@ -1,5 +1,5 @@
 CXX      := g++
-CXXFLAGS := -Wall -g -std=c++23 -MMD -MP
+CXXFLAGS := -Wall -std=c++23 -MMD -MP
 LDFLAGS  := -Llib -lglfw3
 INCLUDES := -Iinclude -Isrc
 
@@ -10,6 +10,13 @@ ifeq ($(OS),Darwin)
 		CXX := clang++
 		CXXFLAGS := $(CXXFLAGS) -x c++
 		LDFLAGS := $(LDFLAGS) -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
+endif
+
+# Check for BUILD=release, default is debug
+ifeq ($(BUILD),release)
+	CXXFLAGS := $(CXXFLAGS) -O3 -march=native
+else
+	CXXFLAGS := $(CXXFLAGS) -g
 endif
 
 SRCS := $(shell find src -name "*.cpp")

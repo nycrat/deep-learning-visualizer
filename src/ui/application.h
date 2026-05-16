@@ -37,8 +37,8 @@ private:
   std::uint32_t instance_vbo_{};
   std::unique_ptr<program> square_program_{nullptr};
 
-  dl::idx_matrix training_labels_{"data/mnist/train-labels.idx"};
-  dl::idx_matrix training_images_{"data/mnist/train-images.idx"};
+  shared::idx_matrix training_labels_{"data/mnist/test-labels.idx"};
+  shared::idx_matrix training_images_{"data/mnist/test-images.idx"};
 
   std::size_t digit_index_{};
 };
