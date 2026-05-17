@@ -15,15 +15,19 @@ endif
 # Check for BUILD=release, default is debug
 ifeq ($(BUILD),release)
 	CXXFLAGS := $(CXXFLAGS) -O3 -march=native
+	BUILD    := build/release
+	BIN      := bin/release
 else
 	CXXFLAGS := $(CXXFLAGS) -g
+	BUILD    := build/debug
+	BIN      := bin/debug
 endif
 
 SRCS := $(shell find src -name "*.cpp")
-OBJS := $(SRCS:%.cpp=bin/%.o)
+OBJS := $(SRCS:%.cpp=$(BUILD)/%.o)
 DEPS := $(OBJS:%.o=%.d)
 
-TARGET=bin/main
+TARGET=$(BIN)/main
 
 all: build
 
@@ -31,7 +35,7 @@ $(TARGET): $(OBJS)
 	@mkdir -p $(dir $@)
 	$(CXX) $^ $(LDFLAGS) -o $(TARGET)
 
-bin/%.o: %.cpp
+$(BUILD)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -44,6 +48,6 @@ run: $(TARGET)
 
 .PHONY: clean
 clean:
-	rm -rf bin
+	rm -rf bin build
 
 -include $(DEPS)
