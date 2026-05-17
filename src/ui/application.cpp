@@ -1,11 +1,11 @@
 #include "application.h"
 
+#include <algorithm>
 #include <array>
+#include <cmath>
+#include <cstdlib>
 #include <print>
-#include <ranges>
-#include <span>
 #include <stdexcept>
-#include <vector>
 
 namespace {
 
@@ -44,8 +44,10 @@ void application::initialize_glfw() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_RESIZABLE, 0);
 
-  window_ = glfwCreateWindow(800, 800, "digit classifier", nullptr, nullptr);
+  window_ = glfwCreateWindow(GRID_SIZE * 30, GRID_SIZE * 30, "digit classifier",
+                             nullptr, nullptr);
   if (!window_) {
     throw std::runtime_error("Failed to create GLFW window");
   }
@@ -55,7 +57,29 @@ void application::initialize_glfw() {
     throw std::runtime_error("Failed to initialize GLAD");
   }
 
-  glfwSetKeyCallback(window_, application::key_callback);
+  glfwSetKeyCallback(window_, [](GLFWwindow *window, int key, int scancode,
+                                 int action, int mods) {
+    auto *app = static_cast<application *>(glfwGetWindowUserPointer(window));
+
+    if (app) {
+      app->handle_key(key, action);
+    }
+  });
+  glfwSetMouseButtonCallback(window_, [](GLFWwindow *window, int button,
+                                         int action, int mods) {
+    auto *app = static_cast<application *>(glfwGetWindowUserPointer(window));
+
+    if (app) {
+      app->handle_mouse(button, action);
+    }
+  });
+  glfwSetCursorPosCallback(window_, [](GLFWwindow *window, double x, double y) {
+    auto *app = static_cast<application *>(glfwGetWindowUserPointer(window));
+
+    if (app) {
+      app->handle_cursor_pos(x, y);
+    }
+  });
 
   // Disables vsync
   glfwSwapInterval(0);
@@ -107,48 +131,56 @@ void application::initialize_opengl() {
 }
 
 void application::buffer_image_data() {
-  auto image =
-      training_images_.data().subspan(GRID_SIZE * GRID_SIZE * digit_index_,
-                                      GRID_SIZE * GRID_SIZE) |
-      std::views::transform(
-          [](auto x) { return static_cast<float>(x) / 255.0f; }) |
-      std::ranges::to<std::vector<float>>();
-
   glBindBuffer(GL_ARRAY_BUFFER, instance_vbo_);
-  glBufferData(GL_ARRAY_BUFFER, image.size() * sizeof(float), image.data(),
-               GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, drawn_image_.size() * sizeof(float),
+               drawn_image_.data(), GL_STATIC_DRAW);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void application::handle_key(int key, int action) {
   if (action == GLFW_PRESS) {
-    bool changed{false};
+    if (key == GLFW_KEY_SPACE) {
+      Eigen::Map<Eigen::VectorXf> input{drawn_image_.data(),
+                                        GRID_SIZE * GRID_SIZE};
 
-    if (key == GLFW_KEY_LEFT) {
-      digit_index_ =
-          digit_index_ == 0 ? training_images_.rows() - 1 : digit_index_ - 1;
-      changed = true;
-    }
-    if (key == GLFW_KEY_RIGHT) {
-      digit_index_ =
-          digit_index_ == training_images_.rows() - 1 ? 0 : digit_index_ + 1;
-      changed = true;
-    }
-    if (changed) {
+      std::println("{}", model_.predict(input));
+    } else if (key == GLFW_KEY_R) {
+      drawn_image_.fill(0.0f);
       buffer_image_data();
-      std::println("Digit at index {}: {}", digit_index_,
-                   training_labels_.data()[digit_index_]);
     }
   }
 }
 
-void application::key_callback(GLFWwindow *window, int key, int scancode,
-                               int action, int mods) {
-  auto *app = static_cast<application *>(glfwGetWindowUserPointer(window));
+void application::handle_mouse(int button, int action) {
+  mouse_pressed_ = action == GLFW_PRESS;
+  handle_cursor_pos(cursor_x_, cursor_y_);
+}
 
-  if (app) {
-    app->handle_key(key, action);
+void application::handle_cursor_pos(double x, double y) {
+  cursor_x_ = x;
+  cursor_y_ = y;
+
+  if (!mouse_pressed_) {
+    return;
   }
+
+  auto scaled_x = x / 30.0 - 0.5;
+  auto scaled_y = y / 30.0 - 0.5;
+
+  double brush_size{1.75};
+
+  for (int i{0}; i < GRID_SIZE; i++) {
+    for (int j{0}; j < GRID_SIZE; j++) {
+      double distance_x{i - scaled_x};
+      double distance_y{j - scaled_y};
+      double distance{sqrt(distance_x * distance_x + distance_y * distance_y)};
+      drawn_image_[i + j * GRID_SIZE] = std::max(
+          static_cast<float>(-std::pow(distance / brush_size, 3) + 1.0),
+          drawn_image_[i + j * GRID_SIZE]);
+    }
+  }
+
+  buffer_image_data();
 }
 
 } // namespace ui

@@ -23,7 +23,7 @@ const float learning_rate = 0.002f;
 
 namespace mlp {
 
-network::network(std::span<const std::size_t> layer_sizes) {
+network::network(std::initializer_list<std::size_t> layer_sizes) {
   if (layer_sizes.size() < 2) {
     throw std::runtime_error("Neural network should have at least two layers");
   }

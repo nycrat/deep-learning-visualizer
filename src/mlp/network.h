@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstddef>
-#include <span>
+#include <initializer_list>
 #include <vector>
 
 #include <Eigen/Core>
@@ -12,7 +12,7 @@ namespace mlp {
 
 class network {
 public:
-  network(std::span<const std::size_t> layer_sizes);
+  network(std::initializer_list<std::size_t> layer_sizes);
 
   /// Randomly initializes weights between each neuron using Uniform Xavier Initialization.
   ///

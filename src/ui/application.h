@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cstdint>
 #include <memory>
 
@@ -7,8 +8,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "mlp/mnist.h"
 #include "program.h"
-#include "shared/idx_matrix.h"
 
 namespace ui {
 
@@ -28,8 +29,8 @@ private:
   void initialize_opengl();
   void buffer_image_data();
   void handle_key(int key, int action);
-  static void key_callback(GLFWwindow *window, int key, int scancode,
-                           int action, int mods);
+  void handle_mouse(int button, int action);
+  void handle_cursor_pos(double x, double y);
 
   GLFWwindow *window_{nullptr};
 
@@ -37,10 +38,13 @@ private:
   std::uint32_t instance_vbo_{};
   std::unique_ptr<program> square_program_{nullptr};
 
-  shared::idx_matrix training_labels_{"data/mnist/test-labels.idx"};
-  shared::idx_matrix training_images_{"data/mnist/test-images.idx"};
+  std::array<float, 28 * 28> drawn_image_{};
 
-  std::size_t digit_index_{};
+  mlp::mnist model_;
+
+  bool mouse_pressed_{};
+  double cursor_x_{};
+  double cursor_y_{};
 };
 
 } // namespace ui
