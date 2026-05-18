@@ -1,0 +1,11 @@
+---
+Checks: >
+  bugprone-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  portability-*,
+  -portability-avoid-pragma-once
+CheckOptions:
+  bugprone-easily-swappable-parameters.MinimumLength: 3

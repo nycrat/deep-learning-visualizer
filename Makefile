@@ -1,7 +1,7 @@
 CXX      := g++
 CXXFLAGS := -Wall -std=c++23 -MMD -MP
 LDFLAGS  := -Llib -lglfw3
-INCLUDES := -Iinclude -Isrc
+INCLUDES := -Isrc -isystem include
 
 OS := $(shell uname)
 
@@ -45,6 +45,10 @@ build: $(TARGET)
 .PHONY: run
 run: $(TARGET)
 	$(TARGET)
+
+.PHONY: lint
+lint:
+	clang-tidy $(filter-out src/glad.cpp,$(SRCS)) -- $(CXXFLAGS) $(INCLUDES)
 
 .PHONY: clean
 clean:
