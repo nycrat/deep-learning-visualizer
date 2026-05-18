@@ -7,9 +7,9 @@ OS := $(shell uname)
 
 # Specific flags for MacOS
 ifeq ($(OS),Darwin)
-		CXX := clang++
-		CXXFLAGS := $(CXXFLAGS) -x c++
-		LDFLAGS := $(LDFLAGS) -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
+	CXX := clang++
+	CXXFLAGS := $(CXXFLAGS) -x c++
+	LDFLAGS := $(LDFLAGS) -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
 endif
 
 # Check for BUILD=release, default is debug
@@ -24,6 +24,7 @@ else
 endif
 
 SRCS := $(shell find src -name "*.cpp")
+HRDS := $(shell find src -name "*.h")
 OBJS := $(SRCS:%.cpp=$(BUILD)/%.o)
 DEPS := $(OBJS:%.o=%.d)
 
@@ -49,6 +50,10 @@ run: $(TARGET)
 .PHONY: lint
 lint:
 	clang-tidy $(filter-out src/glad.cpp,$(SRCS)) -- $(CXXFLAGS) $(INCLUDES)
+
+.PHONY: format
+format:
+	clang-format $(SRCS) $(HRDS) -i
 
 .PHONY: clean
 clean:

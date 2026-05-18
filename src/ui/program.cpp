@@ -92,4 +92,4 @@ std::uint32_t program::id() const {
   return id_;
 }
 
-} // namespace dl_visualizer
+} // namespace ui
