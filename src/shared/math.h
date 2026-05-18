@@ -5,13 +5,14 @@
 namespace shared {
 
 inline float sigmoid(float x) {
+  // 1/(1+e^(-x))
   return 1.0f / (1.0f + std::exp(-x));
 }
 
 inline float d_sigmoid(float x) {
-  float y = std::exp(-x);
-  float z = 1.0f + y;
-  return 2.0f / z / z * y;
+  // e^(-x)/(1 + e^(-x))^2
+  float a = std::exp(-x); // a = e^(-x)
+  return a / (1 + a) / (1 + a);
 }
 
 }; // namespace shared

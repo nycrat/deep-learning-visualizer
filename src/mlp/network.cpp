@@ -17,7 +17,7 @@ float get_random(float min = 0.0f, float max = 1.0f) {
   return distr(gen);
 }
 
-const float learning_rate = 0.002f;
+const float learning_rate = 0.01f;
 
 } // namespace
 
