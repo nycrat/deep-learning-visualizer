@@ -1,11 +1,27 @@
 #include "idx_matrix.h"
 
-#include <array>
 #include <format>
 #include <fstream>
 #include <functional>
+#include <ios>
 #include <numeric>
+#include <ranges>
 #include <stdexcept>
+
+namespace {
+
+template <typename T>
+std::vector<T> read(std::ifstream &stream, std::uint64_t size) {
+  std::vector<char> buf(size);
+  stream.read(buf.data(), static_cast<std::streamsize>(size));
+
+  return buf | std::views::transform([](char c) {
+           return static_cast<T>(static_cast<unsigned char>(c));
+         }) |
+         std::ranges::to<std::vector<T>>();
+}
+
+} // namespace
 
 namespace shared {
 
@@ -18,43 +34,38 @@ idx_matrix::idx_matrix(const std::filesystem::path &file_path) {
   }
 
   // Format is 0x00 0x00 (data type) (number of dimensions)
-  std::array<std::byte, 4> magic{};
-  file.read(reinterpret_cast<char *>(magic.data()), magic.size());
+  auto magic = read<std::int64_t>(file, 4);
 
   // Currently only using unsigned bytes for this project
-  [[maybe_unused]] auto data_type = static_cast<std::size_t>(magic.at(2));
-  auto dimensions = static_cast<std::size_t>(magic.at(3));
+  [[maybe_unused]] auto data_type = magic.at(2);
+  auto num_dimensions = magic.at(3);
 
-  std::vector<std::size_t> dimension_sizes(dimensions, 0);
+  std::vector<std::int64_t> dimension_sizes(num_dimensions);
 
-  for (std::size_t &size : dimension_sizes) {
-    std::array<std::byte, 4> dimension_size_buffer{};
-    file.read(reinterpret_cast<char *>(dimension_size_buffer.data()),
-              dimension_size_buffer.size());
+  for (auto &size : dimension_sizes) {
+    auto dimension_size_buffer = read<std::int64_t>(file, 4);
 
-    for (std::size_t j{0}; j < 4; j++) {
+    for (int j{0}; j < 4; j++) {
       size *= 256;
-      size += static_cast<std::size_t>(dimension_size_buffer.at(j));
+      size += dimension_size_buffer.at(j);
     }
   }
 
-  rows_ = dimension_sizes[0];
+  rows_ = dimension_sizes.at(0);
   cols_ = std::accumulate(dimension_sizes.begin() + 1, dimension_sizes.end(),
-                          std::size_t{1}, std::multiplies<>());
-
-  data_ = std::vector<uint8_t>(rows_ * cols_);
-  file.read(reinterpret_cast<char *>(this->data_.data()), rows_ * cols_);
+                          std::int64_t{1}, std::multiplies<>());
+  data_ = read<std::uint8_t>(file, rows_ * cols_);
 }
 
-std::span<const uint8_t> idx_matrix::data() const {
+const std::vector<uint8_t> &idx_matrix::data() const {
   return data_;
 }
 
-std::size_t idx_matrix::rows() const {
+std::int64_t idx_matrix::rows() const {
   return rows_;
 }
 
-std::size_t idx_matrix::cols() const {
+std::int64_t idx_matrix::cols() const {
   return cols_;
 }
 

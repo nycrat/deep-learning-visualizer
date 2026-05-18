@@ -9,3 +9,4 @@ Checks: >
   -portability-avoid-pragma-once
 CheckOptions:
   bugprone-easily-swappable-parameters.MinimumLength: 3
+  cppcoreguidelines-avoid-magic-numbers.IgnorePowersOf2IntegerValues: true

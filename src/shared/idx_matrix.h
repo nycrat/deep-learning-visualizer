@@ -1,9 +1,7 @@
 #pragma once
 
-#include <cstddef>
 #include <cstdint>
 #include <filesystem>
-#include <span>
 #include <vector>
 
 namespace shared {
@@ -17,14 +15,14 @@ public:
   /// Constructs an IDX matrix from a file
   explicit idx_matrix(const std::filesystem::path &file_path);
 
-  [[nodiscard]] std::span<const uint8_t> data() const;
-  [[nodiscard]] std::size_t rows() const;
-  [[nodiscard]] std::size_t cols() const;
+  [[nodiscard]] const std::vector<uint8_t> &data() const;
+  [[nodiscard]] std::int64_t rows() const;
+  [[nodiscard]] std::int64_t cols() const;
 
 private:
-  std::size_t rows_{};
-  std::size_t cols_{};
-  std::vector<uint8_t> data_{};
+  std::int64_t rows_{};
+  std::int64_t cols_{};
+  std::vector<uint8_t> data_;
 };
 
 } // namespace shared

@@ -4,7 +4,7 @@
 
 namespace mlp {
 
-layer::layer(std::size_t n, std::size_t prev_n)
+layer::layer(int n, int prev_n)
     : activations(n), z_values(n), biases(n), weights(n, prev_n) {
 }
 
@@ -13,8 +13,8 @@ void layer::update(layer *previous_layer) {
   activations = z_values.unaryExpr([](float z) { return shared::sigmoid(z); });
 }
 
-std::size_t layer::n() const {
-  return weights.rows();
+int layer::n() const {
+  return static_cast<int>(weights.rows());
 }
 
 } // namespace mlp

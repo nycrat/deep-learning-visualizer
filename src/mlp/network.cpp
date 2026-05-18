@@ -3,7 +3,6 @@
 #include <cmath>
 #include <random>
 #include <ranges>
-#include <span>
 #include <stdexcept>
 
 #include "shared/math.h"
@@ -13,7 +12,7 @@ namespace {
 float get_random(float min = 0.0f, float max = 1.0f) {
   static std::random_device rd{};
   static std::mt19937 gen{rd()};
-  std::uniform_real_distribution<> distr{min, max};
+  std::uniform_real_distribution<float> distr{min, max};
   return distr(gen);
 }
 
@@ -23,12 +22,12 @@ const float learning_rate = 0.01f;
 
 namespace mlp {
 
-network::network(std::initializer_list<std::size_t> layer_sizes) {
+network::network(std::initializer_list<int> layer_sizes) {
   if (layer_sizes.size() < 2) {
     throw std::runtime_error("Neural network should have at least two layers");
   }
 
-  std::size_t prev{0};
+  int prev{0};
   for (auto n : layer_sizes) {
     layers_.emplace_back(n, prev);
     gradient_layers_.emplace_back(n, prev);
@@ -40,6 +39,8 @@ void network::initialize_weights() {
   for (auto &&[prev, cur] : layers_ | std::views::adjacent<2>) {
     auto inputs = prev.n();
     auto outputs = cur.n();
+
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers): formula for uniform xavier initialization
     auto x = std::sqrt(6.0f / static_cast<float>(inputs + outputs));
 
     cur.weights = Eigen::MatrixXf::NullaryExpr(
@@ -54,7 +55,7 @@ void network::backpropagate(const Eigen::MatrixXf &inputs,
     gradient_layer.weights.setZero();
   }
 
-  for (std::size_t i{0}; i < inputs.rows(); i++) {
+  for (std::int64_t i{0}; i < inputs.rows(); i++) {
     backpropagate_once(inputs.row(i), outputs.row(i));
   }
 
@@ -87,11 +88,11 @@ void network::backpropagate_once(const Eigen::VectorXf &input,
   gradient_layers_.back().activations =
       2 * (layers_.back().activations - output);
 
-  for (std::size_t i{layers_.size() - 1}; i >= 1; i--) {
-    auto &layer = layers_[i];
-    auto &layer_prev = layers_[i - 1];
-    auto &grad = gradient_layers_[i];
-    auto &grad_prev = gradient_layers_[i - 1];
+  for (std::int64_t i{std::ssize(layers_) - 1}; i >= 1; i--) {
+    auto &layer = layers_.at(i);
+    auto &layer_prev = layers_.at(i - 1);
+    auto &grad = gradient_layers_.at(i);
+    auto &grad_prev = gradient_layers_.at(i - 1);
 
     auto dc_da = grad.activations;
     auto da_dz =

@@ -1,9 +1,6 @@
-#include <cstddef>
 #include <cstdio>
 #include <exception>
 #include <print>
-
-#include <Eigen/Core>
 
 #include "ui/application.h"
 
