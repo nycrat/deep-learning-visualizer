@@ -18,10 +18,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: install gcc 14
+      - name: install ubuntu dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-14
+          sudo apt-get install -y g++-14 libwayland-dev libxkbcommon-dev xorg-dev
 
       - name: setup
         run: ./scripts/setup.sh
