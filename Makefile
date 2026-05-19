@@ -71,8 +71,13 @@ lint:
 
 .PHONY: format
 format:
-	clang-format $(SRCS) $(HRDS) -i
-	clang-format $(filter-out tests/catch_amalgamated.cpp,$(TEST_SRCS)) $(filter-out tests/catch_amalgamated.h,$(TEST_HRDS)) -i
+	clang-format -i $(SRCS) $(HRDS)
+	clang-format -i $(filter-out tests/catch_amalgamated.cpp,$(TEST_SRCS)) $(filter-out tests/catch_amalgamated.h,$(TEST_HRDS))
+
+.PHONY: ci-format-check
+ci-format-check:
+	clang-format --dry-run --Werror $(SRCS) $(HRDS)
+	clang-format --dry-run --Werror $(filter-out tests/catch_amalgamated.cpp,$(TEST_SRCS)) $(filter-out tests/catch_amalgamated.h,$(TEST_HRDS)) -i
 
 .PHONY: clean
 clean:

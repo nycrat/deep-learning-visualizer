@@ -1,0 +1,20 @@
+name: Run linter and formatting check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup
+        run: ./scripts/setup.sh
+      - name: lint
+        run: make lint
+      - name: format
+        run: make ci-format-check

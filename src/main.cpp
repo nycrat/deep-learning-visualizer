@@ -8,7 +8,7 @@ int main() {
   try {
     ui::application app{};
     app.run();
-  } catch (const std::exception &e) {
+    } catch (const std::exception &e) {
     std::println(stderr, "Runtime error: {}", e.what());
     return 1;
   }
