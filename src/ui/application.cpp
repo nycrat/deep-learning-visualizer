@@ -3,13 +3,12 @@
 #include <array>
 #include <cmath>
 #include <cstdint>
-#include <cstdlib>
 #include <print>
 #include <stdexcept>
 
 namespace {
 
-const std::uint64_t UI_SCALE{30};
+const std::int64_t UI_SCALE{30};
 
 } // namespace
 

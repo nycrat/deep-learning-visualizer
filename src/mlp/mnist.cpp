@@ -72,7 +72,7 @@ mnist::mnist()
     set_input(test_input);
     update();
 
-    std::uint8_t prediction = 0;
+    int prediction = 0;
     float largest = output()(0);
     for (int digit{0}; digit < shared::TOTAL_DIGITS; digit++) {
       if (output()(digit) > largest) {
