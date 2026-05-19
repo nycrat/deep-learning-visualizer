@@ -10,9 +10,8 @@ inline float sigmoid(float x) {
 }
 
 inline float d_sigmoid(float x) {
-  // e^(-x)/(1 + e^(-x))^2
-  float a = std::exp(-x); // a = e^(-x)
-  return a / (1 + a) / (1 + a);
+  float a = sigmoid(x);
+  return a * (1 - a);
 }
 
 }; // namespace shared
