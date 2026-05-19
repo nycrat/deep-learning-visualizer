@@ -28,17 +28,31 @@ HRDS := $(shell find src -name "*.h")
 OBJS := $(SRCS:%.cpp=$(BUILD)/%.o)
 DEPS := $(OBJS:%.o=%.d)
 
-TARGET=$(BIN)/main
+TARGET := $(BIN)/main
+
+TEST_SRCS := $(shell find tests -name "*.cpp")
+TEST_HRDS := $(shell find tests -name "*.h")
+TEST_OBJS := $(TEST_SRCS:%.cpp=$(BUILD)/%.o)
+TEST_DEPS := $(TEST_OBJS:%.o=%.d)
+
+TEST_TARGET := $(BIN)/test
 
 all: build
 
 $(TARGET): $(OBJS)
-	@mkdir -p $(dir $@)
-	$(CXX) $^ $(LDFLAGS) -o $(TARGET)
+$(TEST_TARGET): $(TEST_OBJS) $(filter-out $(BUILD)/src/main.o,$(OBJS))
 
-$(BUILD)/%.o: %.cpp
+$(TARGET) $(TEST_TARGET):
+	@mkdir -p $(dir $@)
+	$(CXX) $^ $(LDFLAGS) -o $@
+
+$(BUILD)/src/%.o: src/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(BUILD)/tests/%.o: tests/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -Itests -c $< -o $@
 
 .PHONY: build
 build: $(TARGET)
@@ -47,6 +61,10 @@ build: $(TARGET)
 run: $(TARGET)
 	$(TARGET)
 
+.PHONY: test
+test: $(TEST_TARGET)
+	$(TEST_TARGET)
+
 .PHONY: lint
 lint:
 	clang-tidy $(filter-out src/glad.cpp,$(SRCS)) -- $(CXXFLAGS) $(INCLUDES)
@@ -54,9 +72,11 @@ lint:
 .PHONY: format
 format:
 	clang-format $(SRCS) $(HRDS) -i
+	clang-format $(filter-out tests/catch_amalgamated.cpp,$(TEST_SRCS)) $(filter-out tests/catch_amalgamated.h,$(TEST_HRDS)) -i
 
 .PHONY: clean
 clean:
 	rm -rf bin build
 
 -include $(DEPS)
+-include $(TEST_DEPS)
