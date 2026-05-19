@@ -80,7 +80,7 @@ mnist::mnist()
         largest = output()(digit);
       }
     }
-    if (prediction == testing_labels.data().at(i)) {
+    if (prediction == static_cast<std::int8_t>(testing_labels.data().at(i))) {
       correct++;
     }
   }
