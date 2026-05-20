@@ -12,8 +12,8 @@ ifeq ($(OS),Darwin)
 	LDFLAGS := $(LDFLAGS) -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
 endif
 
-# Check for BUILD=release, default is debug
-ifeq ($(BUILD),release)
+# Check for BUILD_TYPE=release, default is debug
+ifeq ($(BUILD_TYPE),release)
 	CXXFLAGS := $(CXXFLAGS) -O3 -march=native
 	BUILD    := build/release
 	BIN      := bin/release

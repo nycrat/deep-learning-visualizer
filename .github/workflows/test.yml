@@ -27,4 +27,4 @@ jobs:
         run: ./scripts/setup.sh
 
       - name: run test target
-        run: make test CXX=g++-14 BUILD=${{ matrix.build_type }}
+        run: make test CXX=g++-14 BUILD_TYPE=${{ matrix.build_type }}
