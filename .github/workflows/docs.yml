@@ -1,0 +1,44 @@
+name: Generate documentation website
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install ubuntu dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: run doxygen
+        run: cd docs && doxygen
+
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/html
+
+  deploy:
+    needs: generate-docs
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: documentation
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy to github pages
+        id: deployment
+        uses: actions/deploy-pages@v5
