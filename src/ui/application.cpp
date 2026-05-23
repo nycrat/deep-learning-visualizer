@@ -152,6 +152,10 @@ void application::handle_key(int key, int action) {
     } else if (key == GLFW_KEY_R) {
       drawn_image_.fill(0.0f);
       buffer_image_data();
+    } else if (key == GLFW_KEY_T) {
+      model_.train();
+    } else if (key == GLFW_KEY_S) {
+      model_.to_file("data/mnist/trained.mlp");
     }
   }
 }

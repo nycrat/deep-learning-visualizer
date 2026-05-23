@@ -1,6 +1,6 @@
 #pragma once
 
-#include <initializer_list>
+#include <filesystem>
 #include <vector>
 
 #include <Eigen/Core>
@@ -11,7 +11,12 @@ namespace mlp {
 
 class network {
 public:
-  network(std::initializer_list<int> layer_sizes);
+  void to_file(const std::filesystem::path &file_path);
+
+protected:
+  explicit network(const std::vector<int> &layer_sizes);
+
+  explicit network(const std::filesystem::path &file_path);
 
   /// Randomly initializes weights between each neuron using Uniform Xavier Initialization.
   ///
@@ -35,6 +40,8 @@ public:
 private:
   void backpropagate_once(const Eigen::VectorXf &input,
                           const Eigen::VectorXf &output);
+
+  void initialize_layers(const std::vector<int> &layer_sizes);
 
   std::vector<layer> layers_;
   std::vector<layer> gradient_layers_;

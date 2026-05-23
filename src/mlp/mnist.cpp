@@ -22,7 +22,12 @@ namespace mlp {
 mnist::mnist()
     : network({shared::TOTAL_PIXELS, 64, 64, 64, shared::TOTAL_DIGITS}) {
   initialize_weights();
+}
 
+mnist::mnist(const std::filesystem::path &file_path) : network(file_path) {
+}
+
+void mnist::train() {
   shared::idx_matrix training_labels{"data/mnist/train-labels.idx"};
   shared::idx_matrix training_images{"data/mnist/train-images.idx"};
 

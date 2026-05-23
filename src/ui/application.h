@@ -41,7 +41,7 @@ private:
 
   std::array<float, shared::TOTAL_PIXELS> drawn_image_{};
 
-  mlp::mnist model_;
+  mlp::mnist model_{"data/mnist/trained.mlp"};
 
   bool mouse_pressed_{};
   double cursor_x_{};
