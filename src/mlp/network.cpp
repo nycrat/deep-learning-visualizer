@@ -13,10 +13,10 @@
 
 namespace {
 
-float get_random(float min = 0.0f, float max = 1.0f) {
+float get_normal(float mean, float standard_deviation) {
   static std::random_device rd{};
   static std::mt19937 gen{rd()};
-  std::uniform_real_distribution<float> distr{min, max};
+  std::normal_distribution distr(mean, standard_deviation);
   return distr(gen);
 }
 
@@ -96,14 +96,12 @@ void network::to_file(const std::filesystem::path &file_path) {
 
 void network::initialize_weights() {
   for (auto &&[prev, cur] : layers_ | std::views::adjacent<2>) {
-    auto inputs = prev.n();
-    auto outputs = cur.n();
+    const auto inputs{prev.n()};
 
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers): formula for uniform xavier initialization
-    auto x = std::sqrt(6.0f / static_cast<float>(inputs + outputs));
+    const auto sd{std::sqrtf(2.0f / static_cast<float>(inputs))};
 
     cur.weights = Eigen::MatrixXf::NullaryExpr(
-        cur.n(), prev.n(), [x]() { return get_random(-x, x); });
+        cur.n(), prev.n(), [sd]() { return get_normal(0, sd); });
   }
 }
 

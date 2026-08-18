@@ -18,9 +18,9 @@ protected:
 
   explicit network(const std::filesystem::path &file_path);
 
-  /// Randomly initializes weights between each neuron using Uniform Xavier Initialization.
+  /// Randomly initializes weights between each neuron using He initialization.
   ///
-  /// @see https://en.wikipedia.org/wiki/Weight_initialization#Glorot_initialization
+  /// @see https://en.wikipedia.org/wiki/Weight_initialization#He_initialization
   void initialize_weights();
 
   /// Performs a single backprogatation step with a list of training data.

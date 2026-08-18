@@ -10,7 +10,7 @@ layer::layer(int n, int prev_n)
 
 void layer::update(layer *previous_layer) {
   z_values = weights * previous_layer->activations + biases;
-  activations = z_values.unaryExpr([](float z) { return shared::sigmoid(z); });
+  activations = z_values.unaryExpr([](float z) { return shared::relu(z); });
 }
 
 int layer::n() const {

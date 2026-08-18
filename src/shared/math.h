@@ -14,4 +14,8 @@ inline float d_sigmoid(float x) {
   return a * (1 - a);
 }
 
+inline float relu(float x) {
+  return std::fmax(0.0f, x);
+}
+
 }; // namespace shared
