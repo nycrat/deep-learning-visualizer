@@ -20,8 +20,7 @@ std::vector<float> to_float_vector(std::span<const uint8_t> data) {
 
 namespace mlp {
 
-mnist::mnist()
-    : network({shared::TOTAL_PIXELS, 64, 64, 64, shared::TOTAL_DIGITS}) {
+mnist::mnist() : network({shared::TOTAL_PIXELS, 128, 128, shared::TOTAL_DIGITS}) {
   initialize_weights();
 }
 
@@ -32,7 +31,7 @@ void mnist::train() {
   shared::idx_matrix training_labels{"data/mnist/train-labels.idx"};
   shared::idx_matrix training_images{"data/mnist/train-images.idx"};
 
-  std::int64_t batch_size{1}; // TODO fix this
+  std::int64_t batch_size{64}; // TODO fix this
   std::int64_t rows{training_labels.rows()};
 
   auto raw_inputs = to_float_vector(training_images.data());
