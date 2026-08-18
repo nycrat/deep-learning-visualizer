@@ -1,3 +1,4 @@
+#include <cmath>
 #include <print>
 #include <ranges>
 
@@ -99,6 +100,13 @@ int mnist::predict(const Eigen::VectorXf &input) {
   update();
 
   auto output_vec = output();
+
+  // https://en.wikipedia.org/wiki/Softmax_function
+  // but technically doesn't matter for final prediction
+  output_vec.unaryExpr([](float x) -> float { return std::exp(x); });
+  output_vec /= output_vec.sum();
+
+  std::println("Output: {}", output_vec);
 
   int predicted_digit{0};
   float max_activation{output_vec(0)};
