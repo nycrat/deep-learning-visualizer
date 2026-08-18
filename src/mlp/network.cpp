@@ -176,6 +176,9 @@ void network::initialize_layers(const std::vector<int> &layer_sizes) {
     gradient_layers_.emplace_back(n, prev);
     prev = n;
   }
+
+  layers_.back().is_output = true;
+  gradient_layers_.back().is_output = true;
 }
 
 } // namespace mlp
