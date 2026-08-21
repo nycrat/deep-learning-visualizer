@@ -2,8 +2,6 @@
 
 #include "shared/math.h"
 
-#include <cmath>
-
 namespace mlp {
 
 layer::layer(int n, int prev_n)
@@ -14,7 +12,9 @@ void layer::update(layer *previous_layer) {
   z_values = weights * previous_layer->activations + biases;
   if (is_output) {
     // https://en.wikipedia.org/wiki/Softmax_function
-    activations = z_values.unaryExpr([](float z) { return std::exp(z); });
+    // https://stackoverflow.com/questions/42599498/numerically-stable-softmax
+    const auto max_z{z_values.maxCoeff()};
+    activations = (z_values.array() - max_z).exp();
     activations /= activations.sum();
   } else {
     activations = z_values.unaryExpr([](float z) { return shared::relu(z); });
