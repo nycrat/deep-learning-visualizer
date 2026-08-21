@@ -115,10 +115,6 @@ int mnist::predict(const Eigen::VectorXf &input) {
   update();
 
   const auto output_vec{output()};
-  const std::span output_span{output_vec.data(),
-                              static_cast<std::size_t>(output_vec.size())};
-
-  std::println("Output: {}", output_span);
 
   int predicted_digit{0};
   float max_activation{output_vec(0)};
