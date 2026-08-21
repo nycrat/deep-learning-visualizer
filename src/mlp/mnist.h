@@ -20,19 +20,19 @@ private:
   static const shared::idx_matrix &training_labels() {
     static shared::idx_matrix training_labels{"data/mnist/train-labels.idx"};
     return training_labels;
-  };
+  }
   static const shared::idx_matrix &training_images() {
     static shared::idx_matrix training_images{"data/mnist/train-images.idx"};
     return training_images;
-  };
+  }
   static const shared::idx_matrix &testing_labels() {
     static shared::idx_matrix testing_labels{"data/mnist/test-labels.idx"};
     return testing_labels;
-  };
+  }
   static const shared::idx_matrix &testing_images() {
     static shared::idx_matrix testing_images{"data/mnist/test-images.idx"};
     return testing_images;
-  };
+  }
 };
 
 } // namespace mlp

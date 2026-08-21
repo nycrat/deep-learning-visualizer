@@ -159,7 +159,7 @@ float network::backpropagate_once(const mlp::data_point &data_point) {
         auto &grad_next{gradient_layers_.at(i + 1)};
         auto &layer_next{layers_.at(i + 1)};
 
-        // NOTE: technically supposed to use last error vector, but its
+        // NOTE: technically supposed to use last error vector, but it's
         // identical to the previous biases vector in this implementation
         return (layer_next.weights.transpose() * grad_next.biases)
             .cwiseProduct(layer_curr.z_values.unaryExpr(
