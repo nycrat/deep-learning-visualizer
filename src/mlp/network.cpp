@@ -106,16 +106,18 @@ void network::initialize_weights() {
   }
 }
 
-void network::backpropagate(
+float network::backpropagate(
     const std::vector<mlp::data_point> &training_batch) {
   for (auto &gradient_layer : gradient_sum_layers_) {
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
   }
 
+  float cost{};
+
   // finds the gradient
   for (const auto &data_point : training_batch) {
-    backpropagate_once(data_point);
+    cost += backpropagate_once(data_point);
   }
 
   for (auto &&[layer, gradient] :
@@ -123,6 +125,8 @@ void network::backpropagate(
     layer.biases -= learning_rate * gradient.biases / training_batch.size();
     layer.weights -= learning_rate * gradient.weights / training_batch.size();
   }
+
+  return cost / static_cast<float>(training_batch.size());
 }
 
 void network::set_input(const Eigen::VectorXf &input) {
@@ -139,7 +143,7 @@ const Eigen::VectorXf &network::output() const {
   return layers_.back().activations;
 }
 
-void network::backpropagate_once(const mlp::data_point &data_point) {
+float network::backpropagate_once(const mlp::data_point &data_point) {
   set_input(data_point.input);
   update();
 
@@ -172,6 +176,8 @@ void network::backpropagate_once(const mlp::data_point &data_point) {
     sum_gradient.biases += gradient.biases;
     sum_gradient.weights += gradient.weights;
   }
+
+  return -std::logf((data_point.output.transpose() * output())(0, 0));
 }
 
 void network::initialize_layers(const std::vector<int> &layer_sizes) {

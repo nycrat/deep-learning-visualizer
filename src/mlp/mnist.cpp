@@ -72,7 +72,7 @@ void mnist::train() {
                                               shared::TOTAL_DIGITS});
       }
 
-      backpropagate(batch);
+      total_cost += backpropagate(batch);
       batch.clear();
     }
     std::println("Training {}/{} epochs complete; Current cost: {}", epoch,

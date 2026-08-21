@@ -29,7 +29,7 @@ protected:
   /// @see https://en.wikipedia.org/wiki/Backpropagation
   /// @see https://youtu.be/Ilg3gGewQ5U
   /// @see https://youtu.be/tIeHLnjs5U8
-  void backpropagate(const std::vector<mlp::data_point> &training_batch);
+  float backpropagate(const std::vector<mlp::data_point> &training_batch);
 
   void set_input(const Eigen::VectorXf &input);
   void update();
@@ -37,7 +37,7 @@ protected:
   [[nodiscard]] const Eigen::VectorXf &output() const;
 
 private:
-  void backpropagate_once(const mlp::data_point &data_point);
+  float backpropagate_once(const mlp::data_point &data_point);
 
   void initialize_layers(const std::vector<int> &layer_sizes);
 
