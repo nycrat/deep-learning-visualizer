@@ -15,6 +15,7 @@ struct layer {
   Eigen::VectorXf z_values;
   Eigen::VectorXf biases;
   Eigen::MatrixXf weights;
+  bool is_output{false};
 };
 
 } // namespace mlp

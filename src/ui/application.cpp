@@ -154,6 +154,8 @@ void application::handle_key(int key, int action) {
       buffer_image_data();
     } else if (key == GLFW_KEY_T) {
       model_.train();
+    } else if (key == GLFW_KEY_Y) {
+      model_.test();
     } else if (key == GLFW_KEY_S) {
       model_.to_file("data/mnist/trained.mlp");
     }

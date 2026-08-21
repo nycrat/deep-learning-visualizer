@@ -9,18 +9,19 @@
 #include <stdexcept>
 #include <vector>
 
+#include "mlp/layer.h"
 #include "shared/math.h"
 
 namespace {
 
-float get_random(float min = 0.0f, float max = 1.0f) {
+float get_normal(float mean, float standard_deviation) {
   static std::random_device rd{};
   static std::mt19937 gen{rd()};
-  std::uniform_real_distribution<float> distr{min, max};
+  std::normal_distribution distr(mean, standard_deviation);
   return distr(gen);
 }
 
-const float learning_rate = 0.01f;
+const float learning_rate = 0.05f;
 
 } // namespace
 
@@ -96,32 +97,36 @@ void network::to_file(const std::filesystem::path &file_path) {
 
 void network::initialize_weights() {
   for (auto &&[prev, cur] : layers_ | std::views::adjacent<2>) {
-    auto inputs = prev.n();
-    auto outputs = cur.n();
+    const auto inputs{prev.n()};
 
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers): formula for uniform xavier initialization
-    auto x = std::sqrt(6.0f / static_cast<float>(inputs + outputs));
+    const auto sd{std::sqrtf(2.0f / static_cast<float>(inputs))};
 
     cur.weights = Eigen::MatrixXf::NullaryExpr(
-        cur.n(), prev.n(), [x]() { return get_random(-x, x); });
+        cur.n(), prev.n(), [sd]() { return get_normal(0, sd); });
   }
 }
 
-void network::backpropagate(const Eigen::MatrixXf &inputs,
-                            const Eigen::MatrixXf &outputs) {
-  for (auto &gradient_layer : gradient_layers_) {
+float network::backpropagate(
+    const std::vector<mlp::data_point> &training_batch) {
+  for (auto &gradient_layer : gradient_sum_layers_) {
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
   }
 
-  for (std::int64_t i{0}; i < inputs.rows(); i++) {
-    backpropagate_once(inputs.row(i), outputs.row(i));
+  float cost{};
+
+  // finds the gradient
+  for (const auto &data_point : training_batch) {
+    cost += backpropagate_once(data_point);
   }
 
-  for (auto &&[layer, gradient] : std::views::zip(layers_, gradient_layers_)) {
-    layer.biases -= learning_rate * gradient.biases / inputs.rows();
-    layer.weights -= learning_rate * gradient.weights / inputs.rows();
+  for (auto &&[layer, gradient] :
+       std::views::zip(layers_, gradient_sum_layers_)) {
+    layer.biases -= learning_rate * gradient.biases / training_batch.size();
+    layer.weights -= learning_rate * gradient.weights / training_batch.size();
   }
+
+  return cost / static_cast<float>(training_batch.size());
 }
 
 void network::set_input(const Eigen::VectorXf &input) {
@@ -138,33 +143,41 @@ const Eigen::VectorXf &network::output() const {
   return layers_.back().activations;
 }
 
-void network::backpropagate_once(const Eigen::VectorXf &input,
-                                 const Eigen::VectorXf &output) {
-  layers_.front().activations = input;
+float network::backpropagate_once(const mlp::data_point &data_point) {
+  set_input(data_point.input);
   update();
 
-  // for first layer, dc_da = 2 * (a - y)
-  gradient_layers_.back().activations =
-      2 * (layers_.back().activations - output);
-
   for (std::int64_t i{std::ssize(layers_) - 1}; i >= 1; i--) {
-    auto &layer = layers_.at(i);
-    auto &layer_prev = layers_.at(i - 1);
-    auto &grad = gradient_layers_.at(i);
-    auto &grad_prev = gradient_layers_.at(i - 1);
+    auto &layer_curr{layers_.at(i)};
+    auto &layer_prev{layers_.at(i - 1)};
+    auto &grad_curr{gradient_layers_.at(i)};
 
-    auto dc_da = grad.activations;
-    auto da_dz =
-        layer.z_values.unaryExpr([](float z) { return shared::d_sigmoid(z); });
-    Eigen::VectorXf delta = dc_da.array() * da_dz.array();
+    const auto error_vector{[&]() -> Eigen::VectorXf {
+      if (grad_curr.is_output) {
+        return layer_curr.activations - data_point.output;
+      } else {
+        auto &grad_next{gradient_layers_.at(i + 1)};
+        auto &layer_next{layers_.at(i + 1)};
 
-    // calcuate gradient for weight and bias for current layer
-    grad.weights.noalias() += delta * layer_prev.activations.transpose();
-    grad.biases += delta;
+        // NOTE: technically supposed to use last error vector, but it's
+        // identical to the previous biases vector in this implementation
+        return (layer_next.weights.transpose() * grad_next.biases)
+            .cwiseProduct(layer_curr.z_values.unaryExpr(
+                [](float z) { return shared::d_relu(z); }));
+      }
+    }()};
 
-    // calculate gradient for neuron activation of previous layer
-    grad_prev.activations.noalias() = layer.weights.transpose() * delta;
+    grad_curr.weights = error_vector * layer_prev.activations.transpose();
+    grad_curr.biases = error_vector;
   }
+
+  for (auto &&[sum_gradient, gradient] :
+       std::views::zip(gradient_sum_layers_, gradient_layers_)) {
+    sum_gradient.biases += gradient.biases;
+    sum_gradient.weights += gradient.weights;
+  }
+
+  return -std::logf((data_point.output.transpose() * output())(0, 0));
 }
 
 void network::initialize_layers(const std::vector<int> &layer_sizes) {
@@ -176,8 +189,13 @@ void network::initialize_layers(const std::vector<int> &layer_sizes) {
   for (auto n : layer_sizes) {
     layers_.emplace_back(n, prev);
     gradient_layers_.emplace_back(n, prev);
+    gradient_sum_layers_.emplace_back(n, prev);
     prev = n;
   }
+
+  layers_.back().is_output = true;
+  gradient_layers_.back().is_output = true;
+  gradient_sum_layers_.back().is_output = true;
 }
 
 } // namespace mlp

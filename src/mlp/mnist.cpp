@@ -1,7 +1,10 @@
+#include <algorithm>
 #include <print>
+#include <random>
 #include <ranges>
 
-#include "mnist.h"
+#include "mlp/data_point.h"
+#include "mlp/mnist.h"
 #include "shared/idx_matrix.h"
 #include "ui/application.h"
 
@@ -20,7 +23,7 @@ std::vector<float> to_float_vector(std::span<const uint8_t> data) {
 namespace mlp {
 
 mnist::mnist()
-    : network({shared::TOTAL_PIXELS, 64, 64, 64, shared::TOTAL_DIGITS}) {
+    : network({shared::TOTAL_PIXELS, 128, 128, shared::TOTAL_DIGITS}) {
   initialize_weights();
 }
 
@@ -28,77 +31,79 @@ mnist::mnist(const std::filesystem::path &file_path) : network(file_path) {
 }
 
 void mnist::train() {
-  shared::idx_matrix training_labels{"data/mnist/train-labels.idx"};
-  shared::idx_matrix training_images{"data/mnist/train-images.idx"};
+  const int epochs{5};
+  const std::int64_t batch_size{64};
+  const std::int64_t rows{training_labels().rows()};
 
-  std::int64_t batch_size{1}; // TODO fix this
-  std::int64_t rows{training_labels.rows()};
+  const auto raw_inputs = to_float_vector(training_images().data());
+  const auto raw_outputs =
+      training_labels().data() | std::views::transform([](auto digit) {
+        std::array<float, shared::TOTAL_DIGITS> v{};
+        v.at(digit) = 1.0f;
+        return v;
+      }) |
+      std::views::join | std::ranges::to<std::vector<float>>();
 
-  auto raw_inputs = to_float_vector(training_images.data());
+  static std::random_device rd{};
+  static std::mt19937 gen{rd()};
 
-  auto raw_outputs = training_labels.data() |
-                     std::views::transform([](auto digit) {
-                       std::array<float, shared::TOTAL_DIGITS> v{};
-                       v.at(digit) = 1.0f;
-                       return v;
-                     }) |
-                     std::views::join | std::ranges::to<std::vector<float>>();
+  auto indices{std::views::iota(0, rows) | std::ranges::to<std::vector<int>>()};
 
-  const int iterations = 10;
+  std::vector<mlp::data_point> batch;
+  batch.reserve(batch_size);
 
-  for (int it{0}; it < iterations; it++) {
-    for (std::int64_t i{0}; i < rows / batch_size; i++) {
-      auto batch_inputs =
-          raw_inputs | std::views::drop(i * batch_size * shared::TOTAL_PIXELS);
-      Eigen::Map<Eigen::MatrixXf> inputs(batch_inputs.data(), batch_size,
-                                         shared::TOTAL_PIXELS);
+  for (int epoch{1}; epoch <= epochs; epoch++) {
+    std::shuffle(indices.begin(), indices.end(), gen);
+    float total_cost{};
+    for (std::int64_t start{}; start < rows; start += batch_size) {
+      const auto safe_batch_size{std::min(batch_size, rows - start)};
 
-      auto batch_outputs =
-          raw_outputs | std::views::drop(i * batch_size * shared::TOTAL_DIGITS);
-      Eigen::Map<Eigen::MatrixXf> outputs(batch_outputs.data(), batch_size,
-                                          shared::TOTAL_DIGITS);
+      for (std::int64_t k{}; k < safe_batch_size; k++) {
+        const auto index{indices.at(start + k)};
+        const auto batch_input{
+            std::span{raw_inputs}.subspan(index * shared::TOTAL_PIXELS)};
+        const auto batch_output{
+            std::span{raw_outputs}.subspan(index * shared::TOTAL_DIGITS)};
 
-      backpropagate(inputs, outputs);
-    }
-    std::println("Training {}/{} iterations complete", it + 1, iterations);
-  }
-
-  shared::idx_matrix testing_labels{"data/mnist/test-labels.idx"};
-  shared::idx_matrix testing_images{"data/mnist/test-images.idx"};
-
-  auto raw_test_inputs = to_float_vector(testing_images.data());
-
-  int correct{0};
-  for (int i = 0; i < testing_labels.rows(); i++) {
-    auto test_input_span =
-        raw_test_inputs | std::views::drop(shared::TOTAL_PIXELS * i);
-    Eigen::Map<Eigen::VectorXf> test_input(test_input_span.data(),
-                                           shared::TOTAL_PIXELS);
-    set_input(test_input);
-    update();
-
-    int prediction = 0;
-    float largest = output()(0);
-    for (int digit{0}; digit < shared::TOTAL_DIGITS; digit++) {
-      if (output()(digit) > largest) {
-        prediction = digit;
-        largest = output()(digit);
+        batch.emplace_back(
+            Eigen::Map<const Eigen::VectorXf>{batch_input.data(),
+                                              shared::TOTAL_PIXELS},
+            Eigen::Map<const Eigen::VectorXf>{batch_output.data(),
+                                              shared::TOTAL_DIGITS});
       }
+
+      total_cost += backpropagate(batch);
+      batch.clear();
     }
-    if (prediction == static_cast<std::int8_t>(testing_labels.data().at(i))) {
+    std::println("Training {}/{} epochs complete; Current cost: {}", epoch,
+                 epochs, total_cost);
+  }
+}
+
+void mnist::test() {
+  const auto raw_test_inputs = to_float_vector(testing_images().data());
+
+  int correct{};
+  for (int i{}; i < testing_labels().rows(); i++) {
+    const auto test_input_span =
+        std::span{raw_test_inputs}.subspan(shared::TOTAL_PIXELS * i);
+    Eigen::Map<const Eigen::VectorXf> test_input{test_input_span.data(),
+                                                 shared::TOTAL_PIXELS};
+    if (predict(test_input) ==
+        static_cast<std::int8_t>(testing_labels().data().at(i))) {
       correct++;
     }
   }
 
   std::println("{}% accuracy", 100.0f * static_cast<float>(correct) /
-                                   static_cast<float>(testing_labels.rows()));
+                                   static_cast<float>(testing_labels().rows()));
 }
 
 int mnist::predict(const Eigen::VectorXf &input) {
   set_input(input);
   update();
 
-  auto output_vec = output();
+  const auto output_vec{output()};
 
   int predicted_digit{0};
   float max_activation{output_vec(0)};
