@@ -89,18 +89,7 @@ void mnist::test() {
         std::span{raw_test_inputs}.subspan(shared::TOTAL_PIXELS * i);
     Eigen::Map<const Eigen::VectorXf> test_input{test_input_span.data(),
                                                  shared::TOTAL_PIXELS};
-    set_input(test_input);
-    update();
-
-    int predicted_digit{};
-    float largest{output()(0)};
-    for (int digit{}; digit < shared::TOTAL_DIGITS; digit++) {
-      if (output()(digit) > largest) {
-        predicted_digit = digit;
-        largest = output()(digit);
-      }
-    }
-    if (predicted_digit ==
+    if (predict(test_input) ==
         static_cast<std::int8_t>(testing_labels().data().at(i))) {
       correct++;
     }
