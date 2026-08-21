@@ -21,7 +21,7 @@ float get_normal(float mean, float standard_deviation) {
   return distr(gen);
 }
 
-const float learning_rate = 0.05f;
+const float learning_rate = 0.10f;
 
 } // namespace
 

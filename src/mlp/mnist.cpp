@@ -23,7 +23,7 @@ std::vector<float> to_float_vector(std::span<const uint8_t> data) {
 namespace mlp {
 
 mnist::mnist()
-    : network({shared::TOTAL_PIXELS, 128, 128, shared::TOTAL_DIGITS}) {
+    : network({shared::TOTAL_PIXELS, 128, 128, 128, shared::TOTAL_DIGITS}) {
   initialize_weights();
 }
 
