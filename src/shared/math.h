@@ -18,4 +18,8 @@ inline float relu(float x) {
   return std::fmax(0.0f, x);
 }
 
+inline float d_relu(float x) {
+  return x > 0.0f ? 1.0f : 0.0f;
+}
+
 }; // namespace shared

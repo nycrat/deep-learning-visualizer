@@ -3,7 +3,8 @@
 #include <random>
 #include <ranges>
 
-#include "mnist.h"
+#include "mlp/data_point.h"
+#include "mlp/mnist.h"
 #include "shared/idx_matrix.h"
 #include "ui/application.h"
 
@@ -30,13 +31,13 @@ mnist::mnist(const std::filesystem::path &file_path) : network(file_path) {
 }
 
 void mnist::train() {
-  const int epochs{10};
+  const int epochs{5};
   const std::int64_t batch_size{64};
-  const std::int64_t rows{training_labels_.rows()};
+  const std::int64_t rows{training_labels().rows()};
 
-  const auto raw_inputs = to_float_vector(training_images_.data());
+  const auto raw_inputs = to_float_vector(training_images().data());
   const auto raw_outputs =
-      training_labels_.data() | std::views::transform([](auto digit) {
+      training_labels().data() | std::views::transform([](auto digit) {
         std::array<float, shared::TOTAL_DIGITS> v{};
         v.at(digit) = 1.0f;
         return v;
@@ -48,35 +49,44 @@ void mnist::train() {
 
   auto indices{std::views::iota(0, rows) | std::ranges::to<std::vector<int>>()};
 
-  for (int epoch{}; epoch < epochs; epoch++) {
+  std::vector<mlp::data_point> batch;
+  batch.reserve(batch_size);
+
+  for (int epoch{1}; epoch <= epochs; epoch++) {
     std::shuffle(indices.begin(), indices.end(), gen);
     float total_cost{};
-    for (std::int64_t i{}; i < rows; i += batch_size) {
-      const auto safe_batch_size{std::min(batch_size, rows - i)};
-      const auto batch_input_span =
-          raw_inputs | std::views::drop(i * shared::TOTAL_PIXELS);
-      const auto batch_output_span =
-          raw_outputs | std::views::drop(i * shared::TOTAL_DIGITS);
+    for (std::int64_t start{}; start < rows; start += batch_size) {
+      const auto safe_batch_size{std::min(batch_size, rows - start)};
 
-      Eigen::Map<const Eigen::MatrixXf> inputs{
-          batch_input_span.data(), safe_batch_size, shared::TOTAL_PIXELS};
-      Eigen::Map<const Eigen::MatrixXf> outputs{
-          batch_output_span.data(), safe_batch_size, shared::TOTAL_DIGITS};
+      for (std::int64_t k{}; k < safe_batch_size; k++) {
+        const auto index{indices.at(start + k)};
+        const auto batch_input{
+            std::span{raw_inputs}.subspan(index * shared::TOTAL_PIXELS)};
+        const auto batch_output{
+            std::span{raw_outputs}.subspan(index * shared::TOTAL_DIGITS)};
 
-      backpropagate(inputs, outputs);
+        batch.emplace_back(
+            Eigen::Map<const Eigen::VectorXf>{batch_input.data(),
+                                              shared::TOTAL_PIXELS},
+            Eigen::Map<const Eigen::VectorXf>{batch_output.data(),
+                                              shared::TOTAL_DIGITS});
+      }
+
+      backpropagate(batch);
+      batch.clear();
     }
-    std::println("Training {}/{} epochs complete; Current cost: ", epoch + 1,
+    std::println("Training {}/{} epochs complete; Current cost: {}", epoch,
                  epochs, total_cost);
   }
 }
 
 void mnist::test() {
-  const auto raw_test_inputs = to_float_vector(testing_images_.data());
+  const auto raw_test_inputs = to_float_vector(testing_images().data());
 
   int correct{};
-  for (int i{}; i < testing_labels_.rows(); i++) {
+  for (int i{}; i < testing_labels().rows(); i++) {
     const auto test_input_span =
-        raw_test_inputs | std::views::drop(shared::TOTAL_PIXELS * i);
+        std::span{raw_test_inputs}.subspan(shared::TOTAL_PIXELS * i);
     Eigen::Map<const Eigen::VectorXf> test_input{test_input_span.data(),
                                                  shared::TOTAL_PIXELS};
     set_input(test_input);
@@ -91,13 +101,13 @@ void mnist::test() {
       }
     }
     if (predicted_digit ==
-        static_cast<std::int8_t>(testing_labels_.data().at(i))) {
+        static_cast<std::int8_t>(testing_labels().data().at(i))) {
       correct++;
     }
   }
 
   std::println("{}% accuracy", 100.0f * static_cast<float>(correct) /
-                                   static_cast<float>(testing_labels_.rows()));
+                                   static_cast<float>(testing_labels().rows()));
 }
 
 int mnist::predict(const Eigen::VectorXf &input) {
