@@ -29,7 +29,7 @@ protected:
   /// @see https://en.wikipedia.org/wiki/Backpropagation
   /// @see https://youtu.be/Ilg3gGewQ5U
   /// @see https://youtu.be/tIeHLnjs5U8
-  void backpropagate(const std::vector<mlp::data_point> training_batch);
+  void backpropagate(const std::vector<mlp::data_point> &training_batch);
 
   void set_input(const Eigen::VectorXf &input);
   void update();

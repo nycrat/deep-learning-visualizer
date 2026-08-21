@@ -106,7 +106,8 @@ void network::initialize_weights() {
   }
 }
 
-void network::backpropagate(const std::vector<mlp::data_point> training_batch) {
+void network::backpropagate(
+    const std::vector<mlp::data_point> &training_batch) {
   for (auto &gradient_layer : gradient_sum_layers_) {
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
