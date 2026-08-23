@@ -6,6 +6,8 @@
 #include <print>
 #include <stdexcept>
 
+#include "ui/text_renderer.h"
+
 namespace {
 
 const std::int64_t UI_SCALE{30};
