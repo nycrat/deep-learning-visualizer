@@ -1,7 +1,7 @@
 CXX      := g++
 CXXFLAGS := -Wall -std=c++23 -MMD -MP
-LDFLAGS  := -Llib -lglfw3
-INCLUDES := -Isrc -isystem include
+LDFLAGS  := -Lexternal/lib -lglfw3 -lfreetype
+INCLUDES := -Isrc -isystem include -isystem external/include
 
 OS := $(shell uname)
 
