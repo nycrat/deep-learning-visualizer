@@ -1,11 +1,11 @@
 #pragma once
 
-#include "mlp/network.h"
+#include "models/network.h"
 #include "shared/idx_matrix.h"
 
 #include <filesystem>
 
-namespace mlp {
+namespace models {
 
 class mnist : public network {
 public:
@@ -35,4 +35,4 @@ private:
   }
 };
 
-} // namespace mlp
+} // namespace models

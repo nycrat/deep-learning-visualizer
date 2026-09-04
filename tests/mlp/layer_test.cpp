@@ -1,8 +1,8 @@
 #include "catch_amalgamated.h"
-#include "mlp/layer.h"
+#include "models/layer.h"
 
 TEST_CASE("Test layer constructor") {
-  mlp::layer l{7, 5};
+  models::layer l{7, 5};
 
   CHECK(l.n() == 7);
   CHECK(l.activations.rows() == 7);

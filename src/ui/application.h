@@ -8,7 +8,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "mlp/mnist.h"
+#include "models/mnist.h"
 #include "program.h"
 #include "shared/constants.h"
 
@@ -41,7 +41,7 @@ private:
 
   std::array<float, shared::TOTAL_PIXELS> drawn_image_{};
 
-  mlp::mnist model_{};
+  models::mnist model_{};
 
   bool mouse_pressed_{};
   double cursor_x_{};

@@ -2,7 +2,7 @@
 
 #include <Eigen/Core>
 
-namespace mlp {
+namespace models {
 
 /**
   * A lightweight wrapper struct with a reference to an input and output row.
@@ -12,4 +12,4 @@ struct data_point {
   Eigen::Map<const Eigen::VectorXf> output;
 };
 
-} // namespace mlp
+} // namespace models

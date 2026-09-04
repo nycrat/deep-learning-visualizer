@@ -3,8 +3,8 @@
 #include <random>
 #include <ranges>
 
-#include "mlp/data_point.h"
-#include "mlp/mnist.h"
+#include "models/data_point.h"
+#include "models/mnist.h"
 #include "shared/idx_matrix.h"
 #include "ui/application.h"
 
@@ -20,7 +20,7 @@ std::vector<float> to_float_vector(std::span<const uint8_t> data) {
 
 } // namespace
 
-namespace mlp {
+namespace models {
 
 mnist::mnist()
     : network({shared::TOTAL_PIXELS, 128, 128, 128, shared::TOTAL_DIGITS}) {
@@ -49,7 +49,7 @@ void mnist::train() {
 
   auto indices{std::views::iota(0, rows) | std::ranges::to<std::vector<int>>()};
 
-  std::vector<mlp::data_point> batch;
+  std::vector<models::data_point> batch;
   batch.reserve(batch_size);
 
   for (int epoch{1}; epoch <= epochs; epoch++) {
@@ -118,4 +118,4 @@ int mnist::predict(const Eigen::VectorXf &input) {
   return predicted_digit;
 }
 
-} // namespace mlp
+} // namespace models
