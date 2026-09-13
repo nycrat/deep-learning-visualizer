@@ -1,4 +1,4 @@
-#include "program.h"
+#include "engine/graphics/shader.h"
 
 #include <format>
 #include <fstream>
@@ -51,10 +51,10 @@ void check_linking_errors(std::uint32_t program) {
 
 } // namespace
 
-namespace ui {
+namespace engine::graphics {
 
-program::program(const std::filesystem::path &vertex_shader_path,
-                 const std::filesystem::path &fragment_shader_path)
+shader::shader(const std::filesystem::path &vertex_shader_path,
+               const std::filesystem::path &fragment_shader_path)
     : id_(glCreateProgram()) {
   std::uint32_t vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
   auto vertex_shader_string = read_file(vertex_shader_path);
@@ -82,15 +82,15 @@ program::program(const std::filesystem::path &vertex_shader_path,
   glDeleteShader(fragment_shader);
 }
 
-program::~program() {
+shader::~shader() {
   glDeleteProgram(id_);
 }
 
-void program::use() {
+void shader::use() {
   glUseProgram(id_);
 }
 
-std::uint32_t program::id() const {
+std::uint32_t shader::id() const {
   return id_;
 }
 

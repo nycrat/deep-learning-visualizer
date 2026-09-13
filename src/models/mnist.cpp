@@ -6,7 +6,7 @@
 #include "models/data_point.h"
 #include "models/mnist.h"
 #include "shared/idx_matrix.h"
-#include "ui/application.h"
+#include "shared/constants.h"
 
 namespace {
 
