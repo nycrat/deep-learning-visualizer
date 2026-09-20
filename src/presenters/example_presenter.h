@@ -2,7 +2,6 @@
 
 #include <functional>
 #include <memory>
-#include <print>
 
 #include "engine/input/constants.h"
 #include "engine/input/event_bus.h"
@@ -17,14 +16,12 @@ public:
                     std::unique_ptr<views::example_view> view,
                     engine::input::event_bus &bus)
       : view_(std::move(view)), model_(std::move(model)), bus_(bus) {
-    bus.subscribe([](engine::input::key key, engine::input::action action) {
-      if (action == engine::input::action::down) {
-        std::println("{}", static_cast<int>(key));
-      }
-    });
+    bus.subscribe([&](auto k, auto a) { this->handle_key_event(k, a); });
   }
 
   void load_and_render();
+
+  void handle_key_event(engine::input::key key, engine::input::action action);
 
 private:
   std::unique_ptr<views::example_view> view_;
