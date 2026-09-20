@@ -14,6 +14,10 @@ class renderer {
 public:
   renderer();
   ~renderer();
+  renderer(const renderer &) = delete;
+  renderer &operator=(const renderer &) = delete;
+  renderer(renderer &&) = delete;
+  renderer &operator=(renderer &&) = delete;
 
   void begin_frame();
   void end_frame();

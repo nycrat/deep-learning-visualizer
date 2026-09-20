@@ -12,7 +12,8 @@ namespace views {
 
 class example_view_gl : public example_view {
 public:
-  example_view_gl(engine::graphics::renderer &renderer) : renderer_(renderer) {
+  explicit example_view_gl(engine::graphics::renderer &renderer)
+      : renderer_(renderer) {
   }
 
   void display_square(const Eigen::Vector2f &position) override {

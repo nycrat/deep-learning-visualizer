@@ -9,7 +9,7 @@ namespace engine {
 
 class window {
 public:
-  window(input::event_bus &bus);
+  explicit window(input::event_bus &bus);
   ~window();
 
   window(const window &) = delete;

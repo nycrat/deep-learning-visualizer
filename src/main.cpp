@@ -6,7 +6,7 @@
 #include "engine/application.h"
 #include "scenes/example_scene.h"
 
-int main() {
+int main() { // NOLINT(bugprone-exception-escape)
   try {
     engine::application app;
     auto scene = std::make_unique<scenes::example_scene>(app.renderer(),

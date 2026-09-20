@@ -12,16 +12,16 @@ void example_presenter::handle_key_event(engine::input::key key,
   if (action == engine::input::action::down) {
     switch (key) {
     case engine::input::key::h:
-      model_->square_position.x() -= 0.1;
+      model_->square_position.x() -= SQUARE_SPEED;
       break;
     case engine::input::key::j:
-      model_->square_position.y() -= 0.1;
+      model_->square_position.y() -= SQUARE_SPEED;
       break;
     case engine::input::key::k:
-      model_->square_position.y() += 0.1;
+      model_->square_position.y() += SQUARE_SPEED;
       break;
     case engine::input::key::l:
-      model_->square_position.x() += 0.1;
+      model_->square_position.x() += SQUARE_SPEED;
       break;
     default:
     }

@@ -27,6 +27,8 @@ private:
   std::unique_ptr<views::example_view> view_;
   std::unique_ptr<models::example> model_;
   std::reference_wrapper<engine::input::event_bus> bus_;
+
+  static constexpr float SQUARE_SPEED{0.1f};
 };
 
 } // namespace presenters
