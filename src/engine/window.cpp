@@ -3,11 +3,12 @@
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
+#include "engine/input/event_bus.h"
 #include "shared/constants.h"
 
 namespace engine {
 
-window::window()
+window::window(input::event_bus &bus)
     : base_window_([] {
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -24,10 +25,20 @@ window::window()
   }
   glfwMakeContextCurrent(base_window_);
 
+  glfwSetWindowUserPointer(base_window_, &bus);
+
   // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast): there is no way around this cast
   if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
     throw std::runtime_error("Failed to initialize GLAD");
   }
+
+  // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
+  glfwSetKeyCallback(base_window_, [](GLFWwindow *window, int key, int scancode,
+                                      int action, int mode) {
+    auto *bus_ptr =
+        static_cast<input::event_bus *>(glfwGetWindowUserPointer(window));
+    bus_ptr->emit(key, action);
+  });
 
   // Disables vsync
   glfwSwapInterval(0);

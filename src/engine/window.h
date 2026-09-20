@@ -1,5 +1,6 @@
 #pragma once
 
+#include "engine/input/event_bus.h"
 #include <glad/glad.h>
 
 #include <GLFW/glfw3.h>
@@ -8,7 +9,7 @@ namespace engine {
 
 class window {
 public:
-  window();
+  window(input::event_bus &bus);
   ~window();
 
   window(const window &) = delete;

@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "engine/graphics/renderer.h"
+#include "engine/input/event_bus.h"
 #include "engine/scene.h"
 #include "engine/window.h"
 
@@ -20,8 +21,13 @@ public:
     return renderer_;
   };
 
+  input::event_bus &event_bus() {
+    return bus_;
+  };
+
 private:
-  window window_{};
+  input::event_bus bus_{};
+  window window_{bus_};
   graphics::renderer renderer_{};
   std::unique_ptr<scene> current_scene_{};
 };
