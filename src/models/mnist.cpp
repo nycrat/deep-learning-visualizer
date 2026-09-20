@@ -5,8 +5,8 @@
 
 #include "models/data_point.h"
 #include "models/mnist.h"
-#include "shared/idx_matrix.h"
 #include "shared/constants.h"
+#include "shared/idx_matrix.h"
 
 namespace {
 

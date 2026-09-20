@@ -26,4 +26,4 @@ private:
   std::uint32_t id_;
 };
 
-} // namespace ui
+} // namespace engine::graphics

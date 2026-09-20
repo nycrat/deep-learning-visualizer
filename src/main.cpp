@@ -9,7 +9,8 @@
 int main() {
   try {
     engine::application app;
-    auto scene = std::make_unique<scenes::example_scene>(app.renderer(), app.event_bus());
+    auto scene = std::make_unique<scenes::example_scene>(app.renderer(),
+                                                         app.event_bus());
     app.set_scene(std::move(scene));
     app.run();
   } catch (const std::exception &e) {

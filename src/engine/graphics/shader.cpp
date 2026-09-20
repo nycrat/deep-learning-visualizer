@@ -94,4 +94,4 @@ std::uint32_t shader::id() const {
   return id_;
 }
 
-} // namespace ui
+} // namespace engine::graphics
