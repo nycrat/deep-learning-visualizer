@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Eigen/Core>
 #include <functional>
 #include <memory>
 
@@ -17,11 +18,14 @@ public:
                     engine::input::event_bus &bus)
       : view_(std::move(view)), model_(std::move(model)), bus_(bus) {
     bus.subscribe([&](auto k, auto a) { this->handle_key_event(k, a); });
+    bus.subscribe([&](auto pos) { this->handle_cursor_event(pos); });
   }
 
   void load_and_render();
 
   void handle_key_event(engine::input::key key, engine::input::action action);
+
+  void handle_cursor_event(const Eigen::Vector2f &cursor_position);
 
 private:
   std::unique_ptr<views::example_view> view_;

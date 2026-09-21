@@ -1,5 +1,6 @@
 #include "engine/window.h"
 
+#include <Eigen/Core>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
@@ -37,8 +38,22 @@ window::window(input::event_bus &bus)
                                       int action, int mode) {
     auto *bus_ptr =
         static_cast<input::event_bus *>(glfwGetWindowUserPointer(window));
-    bus_ptr->emit(key, action);
+    bus_ptr->emit(static_cast<input::key>(key),
+                  static_cast<input::action>(action));
   });
+
+  glfwSetCursorPosCallback(
+      base_window_, [](GLFWwindow *window, double x, double y) {
+        auto *bus_ptr =
+            static_cast<input::event_bus *>(glfwGetWindowUserPointer(window));
+        int width{};
+        int height{};
+        glfwGetWindowSize(window, &width, &height);
+
+        const auto normalized_width{2 * x / width - 1.0f};
+        const auto normalized_height{-2 * y / height + 1.0f};
+        bus_ptr->emit(Eigen::Vector2f{normalized_width, normalized_height});
+      });
 
   // Disables vsync
   glfwSwapInterval(0);
