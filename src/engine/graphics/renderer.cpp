@@ -1,7 +1,6 @@
 #include "engine/graphics/renderer.h"
 
 #include <glad/glad.h>
-#include <print>
 #include <stdexcept>
 
 namespace engine::graphics {
@@ -45,8 +44,6 @@ void renderer::end_frame() {
       vertices_.data());
 
   glBindVertexArray(vao_);
-
-  std::println("vertices count: {}", vertices_.size());
   glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices_.size()));
 
   vertices_.clear();
@@ -68,8 +65,9 @@ void renderer::draw_quad(const Eigen::Vector2f &p1, const Eigen::Vector2f &p2,
 
 void renderer::draw_line(const Eigen::Vector2f &p1, const Eigen::Vector2f &p2,
                          float thickness) {
-  // TODO implement this function
-  throw std::runtime_error("renderer::draw_line is not implemented yet");
+  const auto parallel{(p1 - p2).normalized() * thickness / 2.0f};
+  const Eigen::Vector2f perp{parallel.y(), -parallel.x()};
+  draw_quad(p1 - perp, p1 + perp, p2 + perp, p2 - perp);
 }
 
 void renderer::draw_text(const Eigen::Vector2f &position,

@@ -35,6 +35,11 @@ public:
     renderer_.get().draw_triangle(p1, p2, p3);
   }
 
+  void display_line(const Eigen::Vector2f &position) override {
+    const auto thickness{0.02f};
+    renderer_.get().draw_line({0, 0}, position, thickness);
+  }
+
 private:
   std::reference_wrapper<engine::graphics::renderer> renderer_;
 };
