@@ -19,11 +19,11 @@ public:
                    std::make_unique<views::example_view_gl>(view_), bus) {
   }
 
-  void on_render() override {
+  void render() override {
     presenter_.load_and_render();
   }
 
-  void on_update() override {
+  void update() override {
   }
 
 private:

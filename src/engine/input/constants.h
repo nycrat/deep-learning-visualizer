@@ -1,5 +1,10 @@
 #pragma once
 
+/**
+ * @file constants.h
+ * @brief Defines input event related enums.
+ */
+
 namespace engine::input {
 
 enum class action {

@@ -10,9 +10,27 @@
 
 namespace engine {
 
+/**
+ * Desktop GUI manager that handles the application lifecycle.
+ *
+ * This class owns the window manager, renderer, and input manager.
+ */
 class application {
 public:
+  /**
+   * Runs the update and render loop with the current scene.
+   *
+   * This method is blocking.
+   */
   void run();
+
+  /**
+   * Sets the active scene.
+   *
+   * @param scene A unique pointer to the new scene.
+   *
+   * @note The scene's ownership is transferred to application.
+   */
   void set_scene(std::unique_ptr<scene> scene) {
     current_scene_ = std::move(scene);
   }

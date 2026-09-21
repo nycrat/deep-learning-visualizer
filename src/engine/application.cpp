@@ -6,9 +6,9 @@ void application::run() {
   while (!window_.should_close()) {
     window_.wait_events();
     if (current_scene_) {
-      current_scene_->on_update();
+      current_scene_->update();
       renderer_.begin_frame();
-      current_scene_->on_render();
+      current_scene_->render();
       renderer_.end_frame();
     }
     window_.swap_buffers();

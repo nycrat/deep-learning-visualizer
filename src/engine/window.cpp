@@ -28,7 +28,8 @@ window::window(input::event_bus &bus)
 
   glfwSetWindowUserPointer(base_window_, &bus);
 
-  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast): there is no way around this cast
+  // there is no way around this cast
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
   if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
     throw std::runtime_error("Failed to initialize GLAD");
   }

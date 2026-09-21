@@ -2,12 +2,22 @@
 
 namespace engine {
 
+/**
+ * An abstract interface representing a complete application scene.
+ */
 class scene {
 public:
   virtual ~scene() = default;
 
-  virtual void on_update() = 0;
-  virtual void on_render() = 0;
+  /**
+   * Performs non-event related updates.
+   */
+  virtual void update() = 0;
+
+  /**
+   * Renders all the scene content.
+   */
+  virtual void render() = 0;
 };
 
 } // namespace engine
