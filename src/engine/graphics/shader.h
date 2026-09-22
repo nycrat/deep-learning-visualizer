@@ -11,7 +11,10 @@ public:
   /// Constructs a program that compiles and links a vertex and fragment shader.
   shader(const std::filesystem::path &vertex_shader_path,
          const std::filesystem::path &fragment_shader_path);
+
+  /// Destructor that deletes the OpenGL program.
   ~shader();
+
   shader(const shader &) = delete;
   shader &operator=(const shader &) = delete;
   shader(shader &&) = delete;

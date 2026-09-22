@@ -30,13 +30,14 @@ renderer::~renderer() {
 }
 
 void renderer::begin_frame() {
+  vertices_.clear();
 }
 
 void renderer::end_frame() {
   glClearColor(1.0, 1.0, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  square_program_.use();
+  program_.use();
   glBindBuffer(GL_ARRAY_BUFFER, vbo_);
   glBufferSubData(
       GL_ARRAY_BUFFER, 0,
@@ -45,8 +46,6 @@ void renderer::end_frame() {
 
   glBindVertexArray(vao_);
   glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices_.size()));
-
-  vertices_.clear();
 }
 
 void renderer::draw_triangle(const Eigen::Vector2f &p1,

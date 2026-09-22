@@ -1,5 +1,7 @@
 #pragma once
 
+/// @file
+
 #include <print>
 
 #include "views/example_view.h"

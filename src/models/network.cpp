@@ -1,3 +1,5 @@
+/// @file
+
 #include "network.h"
 
 #include <cmath>

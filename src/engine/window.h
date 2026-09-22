@@ -1,5 +1,7 @@
 #pragma once
 
+/// @file
+
 #include "engine/input/event_bus.h"
 #include <glad/glad.h>
 

@@ -1,5 +1,7 @@
 #pragma once
 
+/// @file
+
 #include <Eigen/Core>
 #include <functional>
 #include <memory>

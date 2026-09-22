@@ -1,5 +1,7 @@
 #include "layer.h"
 
+/// @file
+
 #include "shared/math.h"
 
 namespace models {

@@ -1,5 +1,7 @@
 #pragma once
 
+/// @file
+
 #include "engine/graphics/renderer.h"
 #include "engine/input/event_bus.h"
 #include "engine/scene.h"

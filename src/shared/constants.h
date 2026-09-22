@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Constants used across many files.
+ */
+
 #include <cstdint>
 
 namespace shared {

@@ -1,5 +1,8 @@
 #pragma once
 
+/// @file
+/// @brief Various math helpers.
+
 #include <cmath>
 
 namespace shared {
