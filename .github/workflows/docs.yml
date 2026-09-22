@@ -2,7 +2,9 @@ name: Generate documentation website
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - "**"
+      - "!gh-pages"
 
 jobs:
   generate-docs:
@@ -39,4 +41,9 @@ jobs:
     steps:
       - name: deploy to github pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
+          keep_files: true
+          destination_dir: ${{ github.ref_name }} # groups docs by branch
