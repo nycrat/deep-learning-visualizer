@@ -1,5 +1,7 @@
 #pragma once
 
+/// @file
+
 #include "engine/graphics/shader.h"
 
 #include <Eigen/Core>

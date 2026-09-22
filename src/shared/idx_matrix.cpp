@@ -1,7 +1,5 @@
 #include "idx_matrix.h"
 
-/// @file
-
 #include <format>
 #include <fstream>
 #include <functional>

@@ -1,5 +1,3 @@
-/// @file
-
 #include "engine/window.h"
 
 #include <Eigen/Core>
