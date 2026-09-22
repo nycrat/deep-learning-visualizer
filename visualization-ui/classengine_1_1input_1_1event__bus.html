@@ -97,17 +97,24 @@ $(document).ready(function(){initNavTree('classengine_1_1input_1_1event__bus.htm
 </div><!--header-->
 <div class="contents">
 
+<p>An event dispatcher for input events.  
+ <a href="classengine_1_1input_1_1event__bus.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="event__bus_8h_source.html">event_bus.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0991405ce87c4cd8c94e82790887be96" id="r_a0991405ce87c4cd8c94e82790887be96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1input_1_1event__bus.html#a0991405ce87c4cd8c94e82790887be96">emit</a> (key key, action action)</td></tr>
+<tr class="memdesc:a0991405ce87c4cd8c94e82790887be96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs all subscribers of a new keyboard event.  <br /></td></tr>
 <tr class="separator:a0991405ce87c4cd8c94e82790887be96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05132ffcfa6b29718f2e4bdf3000e378" id="r_a05132ffcfa6b29718f2e4bdf3000e378"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">emit</a> (const Eigen::Vector2f &amp;cursor_pos)</td></tr>
+<tr class="memdesc:a05132ffcfa6b29718f2e4bdf3000e378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs all subscribers of a new cursor movement event.  <br /></td></tr>
 <tr class="separator:a05132ffcfa6b29718f2e4bdf3000e378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f64ea5b628a94e1ce187ac4ec26d5a4" id="r_a8f64ea5b628a94e1ce187ac4ec26d5a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">subscribe</a> (std::function&lt; void(key, action)&gt; func)</td></tr>
+<tr class="memdesc:a8f64ea5b628a94e1ce187ac4ec26d5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a subscriber to new keyboard events.  <br /></td></tr>
 <tr class="separator:a8f64ea5b628a94e1ce187ac4ec26d5a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a405f3cb8231415f761e7800f352d8825" id="r_a405f3cb8231415f761e7800f352d8825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">subscribe</a> (std::function&lt; void(Eigen::Vector2f)&gt; func)</td></tr>
+<tr class="memdesc:a405f3cb8231415f761e7800f352d8825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a subscriber to new cursor movement events.  <br /></td></tr>
 <tr class="separator:a405f3cb8231415f761e7800f352d8825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -136,7 +143,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Informs all subscribers of a new cursor movement event.</p>
+
+<p>Informs all subscribers of a new cursor movement event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cursor_pos</td><td>The new cursor position. </td></tr>
@@ -179,7 +187,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Informs all subscribers of a new keyboard event.</p>
+
+<p>Informs all subscribers of a new keyboard event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The key whose status is changed. </td></tr>
@@ -213,7 +222,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Attaches a subscriber to new cursor movement events.</p>
+
+<p>Attaches a subscriber to new cursor movement events. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">func</td><td>A function to be called when an event is emitted. </td></tr>
@@ -246,7 +256,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Attaches a subscriber to new keyboard events.</p>
+
+<p>Attaches a subscriber to new keyboard events. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">func</td><td>A function to be called when an event is emitted. </td></tr>

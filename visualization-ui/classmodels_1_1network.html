@@ -122,8 +122,10 @@ Protected Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>network</b> (const std::filesystem::path &amp;file_path)</td></tr>
 <tr class="separator:a0d8b9372d53ef4eb4e95a547f83384c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a331bd306f47dd7ea7bcfbc8882614af5" id="r_a331bd306f47dd7ea7bcfbc8882614af5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5">initialize_weights</a> ()</td></tr>
+<tr class="memdesc:a331bd306f47dd7ea7bcfbc8882614af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly initializes weights between each neuron using He initialization.  <br /></td></tr>
 <tr class="separator:a331bd306f47dd7ea7bcfbc8882614af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82fb6d68fb82a4bf6a13b2696380fa17" id="r_a82fb6d68fb82a4bf6a13b2696380fa17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodels_1_1network.html#a82fb6d68fb82a4bf6a13b2696380fa17">backpropagate</a> (const std::vector&lt; <a class="el" href="structmodels_1_1data__point.html">models::data_point</a> &gt; &amp;training_batch)</td></tr>
+<tr class="memdesc:a82fb6d68fb82a4bf6a13b2696380fa17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single backprogatation step with a list of training data.  <br /></td></tr>
 <tr class="separator:a82fb6d68fb82a4bf6a13b2696380fa17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae19cc0f060f4a911736f95a54d065f4e" id="r_ae19cc0f060f4a911736f95a54d065f4e"><td class="memItemLeft" align="right" valign="top"><a id="ae19cc0f060f4a911736f95a54d065f4e" name="ae19cc0f060f4a911736f95a54d065f4e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_input</b> (const Eigen::VectorXf &amp;input)</td></tr>
@@ -159,7 +161,8 @@ const Eigen::VectorXf &amp;&#160;</td><td class="memItemRight" valign="bottom"><
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Performs a single backprogatation step with a list of training data.</p>
+
+<p>Performs a single backprogatation step with a list of training data. </p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Backpropagation">https://en.wikipedia.org/wiki/Backpropagation</a> </dd>
 <dd>
 <a href="https://youtu.be/Ilg3gGewQ5U">https://youtu.be/Ilg3gGewQ5U</a> </dd>
@@ -190,7 +193,8 @@ const Eigen::VectorXf &amp;&#160;</td><td class="memItemRight" valign="bottom"><
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Randomly initializes weights between each neuron using He initialization.</p>
+
+<p>Randomly initializes weights between each neuron using He initialization. </p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Weight_initialization#He_initialization">https://en.wikipedia.org/wiki/Weight_initialization#He_initialization</a> </dd></dl>
 
 </div>

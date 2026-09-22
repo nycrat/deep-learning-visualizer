@@ -97,13 +97,19 @@ $(document).ready(function(){initNavTree('classengine_1_1window.html',''); initR
 </div><!--header-->
 <div class="contents">
 
+<p>A GLFW window manager.  
+ <a href="classengine_1_1window.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="window_8h_source.html">window.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6600cb8fd3cea9ed6042181f05c1dded" id="r_a6600cb8fd3cea9ed6042181f05c1dded"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1window.html#a6600cb8fd3cea9ed6042181f05c1dded">window</a> (<a class="el" href="classengine_1_1input_1_1event__bus.html">input::event_bus</a> &amp;bus)</td></tr>
+<tr class="memdesc:a6600cb8fd3cea9ed6042181f05c1dded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new window manager.  <br /></td></tr>
 <tr class="separator:a6600cb8fd3cea9ed6042181f05c1dded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af740b02eb9d80562ba0ac3705e469c04" id="r_af740b02eb9d80562ba0ac3705e469c04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1window.html#af740b02eb9d80562ba0ac3705e469c04">~window</a> ()</td></tr>
+<tr class="memitem:af740b02eb9d80562ba0ac3705e469c04" id="r_af740b02eb9d80562ba0ac3705e469c04"><td class="memItemLeft" align="right" valign="top"><a id="af740b02eb9d80562ba0ac3705e469c04" name="af740b02eb9d80562ba0ac3705e469c04"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~window</b> ()</td></tr>
+<tr class="memdesc:af740b02eb9d80562ba0ac3705e469c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that cleans up GLFW resources. <br /></td></tr>
 <tr class="separator:af740b02eb9d80562ba0ac3705e469c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a723038ba3b429f52caa301df8de7c14e" id="r_a723038ba3b429f52caa301df8de7c14e"><td class="memItemLeft" align="right" valign="top"><a id="a723038ba3b429f52caa301df8de7c14e" name="a723038ba3b429f52caa301df8de7c14e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>window</b> (const <a class="el" href="classengine_1_1window.html">window</a> &amp;)=delete</td></tr>
@@ -117,11 +123,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abcc3d2b4f7c3b3fdc1d1990042eb3843" id="r_abcc3d2b4f7c3b3fdc1d1990042eb3843"><td class="memItemLeft" align="right" valign="top"><a id="abcc3d2b4f7c3b3fdc1d1990042eb3843" name="abcc3d2b4f7c3b3fdc1d1990042eb3843"></a>
 <a class="el" href="classengine_1_1window.html">window</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classengine_1_1window.html">window</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:abcc3d2b4f7c3b3fdc1d1990042eb3843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af69a702b5e767f3a181276d35e8111d2" id="r_af69a702b5e767f3a181276d35e8111d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1window.html#af69a702b5e767f3a181276d35e8111d2">should_close</a> () const</td></tr>
+<tr class="memitem:af69a702b5e767f3a181276d35e8111d2" id="r_af69a702b5e767f3a181276d35e8111d2"><td class="memItemLeft" align="right" valign="top"><a id="af69a702b5e767f3a181276d35e8111d2" name="af69a702b5e767f3a181276d35e8111d2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>should_close</b> () const</td></tr>
+<tr class="memdesc:af69a702b5e767f3a181276d35e8111d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the GLFW window should be closed. <br /></td></tr>
 <tr class="separator:af69a702b5e767f3a181276d35e8111d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f3ab349edaf37080037b42f04613fa" id="r_a05f3ab349edaf37080037b42f04613fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1window.html#a05f3ab349edaf37080037b42f04613fa">wait_events</a> ()</td></tr>
+<tr class="memitem:a05f3ab349edaf37080037b42f04613fa" id="r_a05f3ab349edaf37080037b42f04613fa"><td class="memItemLeft" align="right" valign="top"><a id="a05f3ab349edaf37080037b42f04613fa" name="a05f3ab349edaf37080037b42f04613fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_events</b> ()</td></tr>
+<tr class="memdesc:a05f3ab349edaf37080037b42f04613fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks the current theread until there is a new window event. <br /></td></tr>
 <tr class="separator:a05f3ab349edaf37080037b42f04613fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2ca0bf7d6f8a2752db224d75446f0a0" id="r_ad2ca0bf7d6f8a2752db224d75446f0a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1window.html#ad2ca0bf7d6f8a2752db224d75446f0a0">swap_buffers</a> ()</td></tr>
+<tr class="memitem:ad2ca0bf7d6f8a2752db224d75446f0a0" id="r_ad2ca0bf7d6f8a2752db224d75446f0a0"><td class="memItemLeft" align="right" valign="top"><a id="ad2ca0bf7d6f8a2752db224d75446f0a0" name="ad2ca0bf7d6f8a2752db224d75446f0a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>swap_buffers</b> ()</td></tr>
+<tr class="memdesc:ad2ca0bf7d6f8a2752db224d75446f0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches to the newly rendered frame. <br /></td></tr>
 <tr class="separator:ad2ca0bf7d6f8a2752db224d75446f0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -150,110 +162,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs a new window manager.</p>
+
+<p>Constructs a new window manager. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bus</td><td>The input event bus to attach GLFW window event callbacks to. </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="af740b02eb9d80562ba0ac3705e469c04" name="af740b02eb9d80562ba0ac3705e469c04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af740b02eb9d80562ba0ac3705e469c04">&#9670;&#160;</a></span>~window()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">engine::window::~window </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destructor that cleans up GLFW resources. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="af69a702b5e767f3a181276d35e8111d2" name="af69a702b5e767f3a181276d35e8111d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af69a702b5e767f3a181276d35e8111d2">&#9670;&#160;</a></span>should_close()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool engine::window::should_close </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Returns true if the GLFW window should be closed. </p>
-
-</div>
-</div>
-<a id="ad2ca0bf7d6f8a2752db224d75446f0a0" name="ad2ca0bf7d6f8a2752db224d75446f0a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2ca0bf7d6f8a2752db224d75446f0a0">&#9670;&#160;</a></span>swap_buffers()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void engine::window::swap_buffers </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Switches to the newly rendered frame. </p>
-
-</div>
-</div>
-<a id="a05f3ab349edaf37080037b42f04613fa" name="a05f3ab349edaf37080037b42f04613fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05f3ab349edaf37080037b42f04613fa">&#9670;&#160;</a></span>wait_events()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void engine::window::wait_events </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Blocks the current theread until there is a new window event. </p>
 
 </div>
 </div>
