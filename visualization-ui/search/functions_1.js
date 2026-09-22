@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['emit_0',['emit',['../classengine_1_1input_1_1event__bus.html#a0991405ce87c4cd8c94e82790887be96',1,'engine::input::event_bus::emit(key key, action action)'],['../classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378',1,'engine::input::event_bus::emit(const Eigen::Vector2f &amp;cursor_pos)']]]
+  ['draw_5fline_0',['draw_line',['../classengine_1_1graphics_1_1renderer.html#a16a78d0a8274030b0a7c5b64422dd107',1,'engine::graphics::renderer']]],
+  ['draw_5fquad_1',['draw_quad',['../classengine_1_1graphics_1_1renderer.html#af5d35ac2fb5dbf267445ee1d8f5c0ce5',1,'engine::graphics::renderer']]],
+  ['draw_5ftext_2',['draw_text',['../classengine_1_1graphics_1_1renderer.html#a963171395dc44330d3731bec0dfa894e',1,'engine::graphics::renderer']]],
+  ['draw_5ftriangle_3',['draw_triangle',['../classengine_1_1graphics_1_1renderer.html#ac16118fd20690a46a2c128b700f53380',1,'engine::graphics::renderer']]]
 ];

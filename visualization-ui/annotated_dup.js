@@ -2,7 +2,7 @@ var annotated_dup =
 [
     [ "engine", null, [
       [ "graphics", null, [
-        [ "renderer", "classengine_1_1graphics_1_1renderer.html", null ],
+        [ "renderer", "classengine_1_1graphics_1_1renderer.html", "classengine_1_1graphics_1_1renderer" ],
         [ "shader", "classengine_1_1graphics_1_1shader.html", "classengine_1_1graphics_1_1shader" ]
       ] ],
       [ "input", null, [

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['mnist_0',['mnist',['../classmodels_1_1mnist.html',1,'models']]]
+  ['math_2eh_0',['math.h',['../math_8h.html',1,'']]],
+  ['mnist_1',['mnist',['../classmodels_1_1mnist.html',1,'models']]],
+  ['mnist_2ecpp_2',['mnist.cpp',['../mnist_8cpp.html',1,'']]],
+  ['mnist_2eh_3',['mnist.h',['../mnist_8h.html',1,'']]]
 ];

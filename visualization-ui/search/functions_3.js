@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['render_0',['render',['../classengine_1_1scene.html#abe06a36870661b6895f296bd25c81319',1,'engine::scene::render()'],['../classscenes_1_1example__scene.html#a6ebaf3ec51ed8062789bb7986e2488f1',1,'scenes::example_scene::render()']]],
-  ['run_1',['run',['../classengine_1_1application.html#a02e555ddf78a5e647db2e1d8c49336a7',1,'engine::application']]]
+  ['idx_5fmatrix_0',['idx_matrix',['../classshared_1_1idx__matrix.html#a1240f1b6d28d9433cfbe2fd3b9167cec',1,'shared::idx_matrix']]],
+  ['initialize_5fweights_1',['initialize_weights',['../classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5',1,'models::network']]]
 ];

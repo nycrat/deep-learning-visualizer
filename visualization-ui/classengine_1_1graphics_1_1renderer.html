@@ -96,9 +96,22 @@ $(document).ready(function(){initNavTree('classengine_1_1graphics_1_1renderer.ht
   <div class="headertitle"><div class="title">engine::graphics::renderer Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>OpenGL renderer that uses batch rendering.  
+ <a href="classengine_1_1graphics_1_1renderer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="renderer_8h_source.html">renderer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:afddc9aa670e36b3313049159e0459f3a" id="r_afddc9aa670e36b3313049159e0459f3a"><td class="memItemLeft" align="right" valign="top"><a id="afddc9aa670e36b3313049159e0459f3a" name="afddc9aa670e36b3313049159e0459f3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>renderer</b> ()</td></tr>
+<tr class="memdesc:afddc9aa670e36b3313049159e0459f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the renderer; reserves memory in the vertices vector. <br /></td></tr>
+<tr class="separator:afddc9aa670e36b3313049159e0459f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e624ff63809a9608dff2efd316c7b6b" id="r_a9e624ff63809a9608dff2efd316c7b6b"><td class="memItemLeft" align="right" valign="top"><a id="a9e624ff63809a9608dff2efd316c7b6b" name="a9e624ff63809a9608dff2efd316c7b6b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~renderer</b> ()</td></tr>
+<tr class="memdesc:a9e624ff63809a9608dff2efd316c7b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that cleans up the VAO and VBO. <br /></td></tr>
+<tr class="separator:a9e624ff63809a9608dff2efd316c7b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bb0662fb05e9d17bbada18dc47f8b93" id="r_a1bb0662fb05e9d17bbada18dc47f8b93"><td class="memItemLeft" align="right" valign="top"><a id="a1bb0662fb05e9d17bbada18dc47f8b93" name="a1bb0662fb05e9d17bbada18dc47f8b93"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>renderer</b> (const <a class="el" href="classengine_1_1graphics_1_1renderer.html">renderer</a> &amp;)=delete</td></tr>
 <tr class="separator:a1bb0662fb05e9d17bbada18dc47f8b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,25 +124,219 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e6bd89071c5ba95169098460e545687" id="r_a3e6bd89071c5ba95169098460e545687"><td class="memItemLeft" align="right" valign="top"><a id="a3e6bd89071c5ba95169098460e545687" name="a3e6bd89071c5ba95169098460e545687"></a>
 <a class="el" href="classengine_1_1graphics_1_1renderer.html">renderer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classengine_1_1graphics_1_1renderer.html">renderer</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a3e6bd89071c5ba95169098460e545687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff177e406cf0b78df9018fc3a565872d" id="r_aff177e406cf0b78df9018fc3a565872d"><td class="memItemLeft" align="right" valign="top"><a id="aff177e406cf0b78df9018fc3a565872d" name="aff177e406cf0b78df9018fc3a565872d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>begin_frame</b> ()</td></tr>
+<tr class="memitem:aff177e406cf0b78df9018fc3a565872d" id="r_aff177e406cf0b78df9018fc3a565872d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#aff177e406cf0b78df9018fc3a565872d">begin_frame</a> ()</td></tr>
+<tr class="memdesc:aff177e406cf0b78df9018fc3a565872d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins a frame by clearing the vertices buffer.  <br /></td></tr>
 <tr class="separator:aff177e406cf0b78df9018fc3a565872d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ca73282c1e5194bb39e4eef8da4198a" id="r_a4ca73282c1e5194bb39e4eef8da4198a"><td class="memItemLeft" align="right" valign="top"><a id="a4ca73282c1e5194bb39e4eef8da4198a" name="a4ca73282c1e5194bb39e4eef8da4198a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end_frame</b> ()</td></tr>
+<tr class="memdesc:a4ca73282c1e5194bb39e4eef8da4198a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a frame by clearing what is currently drawn and drawing the vertices. <br /></td></tr>
 <tr class="separator:a4ca73282c1e5194bb39e4eef8da4198a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac16118fd20690a46a2c128b700f53380" id="r_ac16118fd20690a46a2c128b700f53380"><td class="memItemLeft" align="right" valign="top"><a id="ac16118fd20690a46a2c128b700f53380" name="ac16118fd20690a46a2c128b700f53380"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_triangle</b> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, const Eigen::Vector2f &amp;p3)</td></tr>
+<tr class="memitem:ac16118fd20690a46a2c128b700f53380" id="r_ac16118fd20690a46a2c128b700f53380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#ac16118fd20690a46a2c128b700f53380">draw_triangle</a> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, const Eigen::Vector2f &amp;p3)</td></tr>
+<tr class="memdesc:ac16118fd20690a46a2c128b700f53380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffers a triangle to be drawn when the frame ends.  <br /></td></tr>
 <tr class="separator:ac16118fd20690a46a2c128b700f53380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5d35ac2fb5dbf267445ee1d8f5c0ce5" id="r_af5d35ac2fb5dbf267445ee1d8f5c0ce5"><td class="memItemLeft" align="right" valign="top"><a id="af5d35ac2fb5dbf267445ee1d8f5c0ce5" name="af5d35ac2fb5dbf267445ee1d8f5c0ce5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_quad</b> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, const Eigen::Vector2f &amp;p3, const Eigen::Vector2f &amp;p4)</td></tr>
+<tr class="memitem:af5d35ac2fb5dbf267445ee1d8f5c0ce5" id="r_af5d35ac2fb5dbf267445ee1d8f5c0ce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#af5d35ac2fb5dbf267445ee1d8f5c0ce5">draw_quad</a> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, const Eigen::Vector2f &amp;p3, const Eigen::Vector2f &amp;p4)</td></tr>
+<tr class="memdesc:af5d35ac2fb5dbf267445ee1d8f5c0ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffers a quad to be drawn when the frame ends.  <br /></td></tr>
 <tr class="separator:af5d35ac2fb5dbf267445ee1d8f5c0ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a78d0a8274030b0a7c5b64422dd107" id="r_a16a78d0a8274030b0a7c5b64422dd107"><td class="memItemLeft" align="right" valign="top"><a id="a16a78d0a8274030b0a7c5b64422dd107" name="a16a78d0a8274030b0a7c5b64422dd107"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_line</b> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, float thickness)</td></tr>
+<tr class="memitem:a16a78d0a8274030b0a7c5b64422dd107" id="r_a16a78d0a8274030b0a7c5b64422dd107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#a16a78d0a8274030b0a7c5b64422dd107">draw_line</a> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, float thickness)</td></tr>
+<tr class="memdesc:a16a78d0a8274030b0a7c5b64422dd107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffers a line to be drawn when the frame ends.  <br /></td></tr>
 <tr class="separator:a16a78d0a8274030b0a7c5b64422dd107"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963171395dc44330d3731bec0dfa894e" id="r_a963171395dc44330d3731bec0dfa894e"><td class="memItemLeft" align="right" valign="top"><a id="a963171395dc44330d3731bec0dfa894e" name="a963171395dc44330d3731bec0dfa894e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_text</b> (const Eigen::Vector2f &amp;position, const std::string &amp;text)</td></tr>
+<tr class="memitem:a963171395dc44330d3731bec0dfa894e" id="r_a963171395dc44330d3731bec0dfa894e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#a963171395dc44330d3731bec0dfa894e">draw_text</a> (const Eigen::Vector2f &amp;position, const std::string &amp;text)</td></tr>
+<tr class="memdesc:a963171395dc44330d3731bec0dfa894e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffers text to be drawn when the frame ends.  <br /></td></tr>
 <tr class="separator:a963171395dc44330d3731bec0dfa894e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>OpenGL renderer that uses batch rendering. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aff177e406cf0b78df9018fc3a565872d" name="aff177e406cf0b78df9018fc3a565872d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff177e406cf0b78df9018fc3a565872d">&#9670;&#160;</a></span>begin_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::begin_frame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Begins a frame by clearing the vertices buffer. </p>
+<p>Should be called before submitting shapes to the renderer. </p>
+
+</div>
+</div>
+<a id="a16a78d0a8274030b0a7c5b64422dd107" name="a16a78d0a8274030b0a7c5b64422dd107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a78d0a8274030b0a7c5b64422dd107">&#9670;&#160;</a></span>draw_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::draw_line </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>thickness</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffers a line to be drawn when the frame ends. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The first point of the line. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point of the line. </td></tr>
+    <tr><td class="paramname">thickness</td><td>The thickness of the line. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af5d35ac2fb5dbf267445ee1d8f5c0ce5" name="af5d35ac2fb5dbf267445ee1d8f5c0ce5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5d35ac2fb5dbf267445ee1d8f5c0ce5">&#9670;&#160;</a></span>draw_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::draw_quad </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffers a quad to be drawn when the frame ends. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The first point of the quad. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point of the quad. </td></tr>
+    <tr><td class="paramname">p3</td><td>The third point of the quad. </td></tr>
+    <tr><td class="paramname">p4</td><td>The fourth point of the quad. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a963171395dc44330d3731bec0dfa894e" name="a963171395dc44330d3731bec0dfa894e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a963171395dc44330d3731bec0dfa894e">&#9670;&#160;</a></span>draw_text()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::draw_text </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffers text to be drawn when the frame ends. </p>
+<p>TODO: function is not implemented yet </p>
+
+</div>
+</div>
+<a id="ac16118fd20690a46a2c128b700f53380" name="ac16118fd20690a46a2c128b700f53380"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac16118fd20690a46a2c128b700f53380">&#9670;&#160;</a></span>draw_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::draw_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffers a triangle to be drawn when the frame ends. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The first point of the triangle. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point of the triangle. </td></tr>
+    <tr><td class="paramname">p3</td><td>The third point of the triangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/runner/work/deep-learning-visualizer/deep-learning-visualizer/src/engine/graphics/<a class="el" href="renderer_8h_source.html">renderer.h</a></li>
 <li>/home/runner/work/deep-learning-visualizer/deep-learning-visualizer/src/engine/graphics/<b>renderer.cpp</b></li>
