@@ -7,14 +7,13 @@ var searchData=
   ['example_4',['example',['../structmodels_1_1example.html',1,'models']]],
   ['example_2eh_5',['example.h',['../example_8h.html',1,'']]],
   ['example_5fpresenter_6',['example_presenter',['../classpresenters_1_1example__presenter.html',1,'presenters']]],
-  ['example_5fpresenter_2ecpp_7',['example_presenter.cpp',['../example__presenter_8cpp.html',1,'']]],
-  ['example_5fpresenter_2eh_8',['example_presenter.h',['../example__presenter_8h.html',1,'']]],
-  ['example_5fscene_9',['example_scene',['../classscenes_1_1example__scene.html',1,'scenes']]],
-  ['example_5fscene_2eh_10',['example_scene.h',['../example__scene_8h.html',1,'']]],
-  ['example_5fview_11',['example_view',['../classviews_1_1example__view.html',1,'views']]],
-  ['example_5fview_2eh_12',['example_view.h',['../example__view_8h.html',1,'']]],
-  ['example_5fview_5fgl_13',['example_view_gl',['../classviews_1_1example__view__gl.html',1,'views']]],
-  ['example_5fview_5fgl_2eh_14',['example_view_gl.h',['../example__view__gl_8h.html',1,'']]],
-  ['example_5fview_5fprint_15',['example_view_print',['../classviews_1_1example__view__print.html',1,'views']]],
-  ['example_5fview_5fprint_2eh_16',['example_view_print.h',['../example__view__print_8h.html',1,'']]]
+  ['example_5fpresenter_2eh_7',['example_presenter.h',['../example__presenter_8h.html',1,'']]],
+  ['example_5fscene_8',['example_scene',['../classscenes_1_1example__scene.html',1,'scenes']]],
+  ['example_5fscene_2eh_9',['example_scene.h',['../example__scene_8h.html',1,'']]],
+  ['example_5fview_10',['example_view',['../classviews_1_1example__view.html',1,'views']]],
+  ['example_5fview_2eh_11',['example_view.h',['../example__view_8h.html',1,'']]],
+  ['example_5fview_5fgl_12',['example_view_gl',['../classviews_1_1example__view__gl.html',1,'views']]],
+  ['example_5fview_5fgl_2eh_13',['example_view_gl.h',['../example__view__gl_8h.html',1,'']]],
+  ['example_5fview_5fprint_14',['example_view_print',['../classviews_1_1example__view__print.html',1,'views']]],
+  ['example_5fview_5fprint_2eh_15',['example_view_print.h',['../example__view__print_8h.html',1,'']]]
 ];
