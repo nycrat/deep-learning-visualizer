@@ -100,7 +100,6 @@ $(document).ready(function(){initNavTree('network_8h_source.html',''); initResiz
 <div class="contents">
 <a href="network_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
@@ -121,27 +120,27 @@ $(document).ready(function(){initNavTree('network_8h_source.html',''); initResiz
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">explicit</span> <a class="code hl_class" href="classmodels_1_1network.html">network</a>(<span class="keyword">const</span> std::filesystem::path &amp;file_path);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5">initialize_weights</a>();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classmodels_1_1network.html#a82fb6d68fb82a4bf6a13b2696380fa17">backpropagate</a>(<span class="keyword">const</span> std::vector&lt;models::data_point&gt; &amp;training_batch);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">void</span> set_input(<span class="keyword">const</span> Eigen::VectorXf &amp;input);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> update();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  [[nodiscard]] <span class="keyword">const</span> Eigen::VectorXf &amp;output() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">float</span> backpropagate_once(<span class="keyword">const</span> <a class="code hl_struct" href="structmodels_1_1data__point.html">models::data_point</a> &amp;<a class="code hl_struct" href="structmodels_1_1data__point.html">data_point</a>);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">void</span> initialize_layers(<span class="keyword">const</span> std::vector&lt;int&gt; &amp;layer_sizes);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  std::vector&lt;layer&gt; layers_;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  std::vector&lt;layer&gt; gradient_layers_;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  std::vector&lt;layer&gt; gradient_sum_layers_;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5">initialize_weights</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classmodels_1_1network.html#a82fb6d68fb82a4bf6a13b2696380fa17">backpropagate</a>(<span class="keyword">const</span> std::vector&lt;models::data_point&gt; &amp;training_batch);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">void</span> set_input(<span class="keyword">const</span> Eigen::VectorXf &amp;input);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> update();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  [[nodiscard]] <span class="keyword">const</span> Eigen::VectorXf &amp;output() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">float</span> backpropagate_once(<span class="keyword">const</span> <a class="code hl_struct" href="structmodels_1_1data__point.html">models::data_point</a> &amp;<a class="code hl_struct" href="structmodels_1_1data__point.html">data_point</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordtype">void</span> initialize_layers(<span class="keyword">const</span> std::vector&lt;int&gt; &amp;layer_sizes);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::vector&lt;layer&gt; layers_;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::vector&lt;layer&gt; gradient_layers_;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::vector&lt;layer&gt; gradient_sum_layers_;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
 </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>} <span class="comment">// namespace models</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <span class="comment">// namespace models</span></div>
 <div class="ttc" id="aclassmodels_1_1network_html"><div class="ttname"><a href="classmodels_1_1network.html">models::network</a></div><div class="ttdef"><b>Definition</b> network.h:15</div></div>
 <div class="ttc" id="aclassmodels_1_1network_html_a331bd306f47dd7ea7bcfbc8882614af5"><div class="ttname"><a href="classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5">models::network::initialize_weights</a></div><div class="ttdeci">void initialize_weights()</div><div class="ttdoc">Randomly initializes weights between each neuron using He initialization.</div><div class="ttdef"><b>Definition</b> network.cpp:98</div></div>
 <div class="ttc" id="aclassmodels_1_1network_html_a82fb6d68fb82a4bf6a13b2696380fa17"><div class="ttname"><a href="classmodels_1_1network.html#a82fb6d68fb82a4bf6a13b2696380fa17">models::network::backpropagate</a></div><div class="ttdeci">float backpropagate(const std::vector&lt; models::data_point &gt; &amp;training_batch)</div><div class="ttdoc">Performs a single backprogatation step with a list of training data.</div><div class="ttdef"><b>Definition</b> network.cpp:109</div></div>
