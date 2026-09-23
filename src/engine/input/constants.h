@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file constants.h
+ * @file
  * @brief Defines input event related enums.
  */
 

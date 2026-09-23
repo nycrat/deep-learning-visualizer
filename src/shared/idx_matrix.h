@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include <cstdint>
 #include <filesystem>
@@ -8,13 +8,20 @@
 
 namespace shared {
 
-/// Represents matrix data from an IDX file as a one dimensional vector.
-///
-/// @see https://www.fon.hum.uva.nl/praat/manual/IDX_file_format.html
-/// @note Parses vectors as row vectors unlike the resource above states
+/**
+ * Represents matrix data from an IDX file as a one dimensional vector.
+ *
+ * @see https://www.fon.hum.uva.nl/praat/manual/IDX_file_format.html
+ * @note Parses vectors as row vectors unlike the resource above states
+ */
 class idx_matrix {
 public:
-  /// Constructs an IDX matrix from a file
+  /**
+   * Constructs an IDX matrix from a file.
+   *
+   * @param file_path The path to a .idx file, relative to the project root.
+   *
+   */
   explicit idx_matrix(const std::filesystem::path &file_path);
 
   [[nodiscard]] const std::vector<uint8_t> &data() const;

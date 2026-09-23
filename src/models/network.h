@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include <filesystem>
 #include <vector>
@@ -21,16 +21,20 @@ protected:
 
   explicit network(const std::filesystem::path &file_path);
 
-  /// Randomly initializes weights between each neuron using He initialization.
-  ///
-  /// @see https://en.wikipedia.org/wiki/Weight_initialization#He_initialization
+  /**
+   * Randomly initializes weights between each neuron using He initialization.
+   *
+   * @see https://en.wikipedia.org/wiki/Weight_initialization#He_initialization
+   */
   void initialize_weights();
 
-  /// Performs a single backprogatation step with a list of training data.
-  ///
-  /// @see https://en.wikipedia.org/wiki/Backpropagation
-  /// @see https://youtu.be/Ilg3gGewQ5U
-  /// @see https://youtu.be/tIeHLnjs5U8
+  /**
+   * Performs a single backprogatation step with a list of training data.
+   *
+   * @see https://en.wikipedia.org/wiki/Backpropagation
+   * @see https://youtu.be/Ilg3gGewQ5U
+   * @see https://youtu.be/tIeHLnjs5U8
+   */
   float backpropagate(const std::vector<models::data_point> &training_batch);
 
   void set_input(const Eigen::VectorXf &input);

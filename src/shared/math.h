@@ -1,7 +1,9 @@
 #pragma once
 
-/// @file
-/// @brief Various math helpers.
+/**
+ * @file
+ * @brief Various math helpers.
+ */
 
 #include <cmath>
 

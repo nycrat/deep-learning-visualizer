@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include "models/network.h"
 #include "shared/idx_matrix.h"

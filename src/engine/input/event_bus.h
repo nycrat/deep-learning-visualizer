@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include "engine/input/constants.h"
 #include <Eigen/Core>

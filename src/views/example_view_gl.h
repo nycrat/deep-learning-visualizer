@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>

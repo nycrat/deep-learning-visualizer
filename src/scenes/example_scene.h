@@ -1,6 +1,6 @@
 #pragma once
 
-/// @file
+/** @file */
 
 #include "engine/graphics/renderer.h"
 #include "engine/input/event_bus.h"
