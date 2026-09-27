@@ -1,16 +1,33 @@
 var annotated_dup =
 [
-    [ "mlp", null, [
-      [ "data_point", "structmlp_1_1data__point.html", null ],
-      [ "layer", "structmlp_1_1layer.html", null ],
-      [ "mnist", "classmlp_1_1mnist.html", null ],
-      [ "network", "classmlp_1_1network.html", "classmlp_1_1network" ]
+    [ "engine", null, [
+      [ "graphics", null, [
+        [ "renderer", "classengine_1_1graphics_1_1renderer.html", "classengine_1_1graphics_1_1renderer" ],
+        [ "shader", "classengine_1_1graphics_1_1shader.html", "classengine_1_1graphics_1_1shader" ]
+      ] ],
+      [ "input", null, [
+        [ "event_bus", "classengine_1_1input_1_1event__bus.html", "classengine_1_1input_1_1event__bus" ]
+      ] ],
+      [ "application", "classengine_1_1application.html", "classengine_1_1application" ],
+      [ "scene", "classengine_1_1scene.html", "classengine_1_1scene" ],
+      [ "window", "classengine_1_1window.html", "classengine_1_1window" ]
+    ] ],
+    [ "models", null, [
+      [ "data_point", "structmodels_1_1data__point.html", null ],
+      [ "layer", "structmodels_1_1layer.html", null ],
+      [ "mnist", "classmodels_1_1mnist.html", null ],
+      [ "network", "classmodels_1_1network.html", "classmodels_1_1network" ]
+    ] ],
+    [ "presenters", null, [
+      [ "pixel_grid_presenter", "classpresenters_1_1pixel__grid__presenter.html", null ]
+    ] ],
+    [ "scenes", null, [
+      [ "pixel_grid_scene", "classscenes_1_1pixel__grid__scene.html", "classscenes_1_1pixel__grid__scene" ]
     ] ],
     [ "shared", null, [
       [ "idx_matrix", "classshared_1_1idx__matrix.html", "classshared_1_1idx__matrix" ]
     ] ],
-    [ "ui", null, [
-      [ "application", "classui_1_1application.html", null ],
-      [ "program", "classui_1_1program.html", "classui_1_1program" ]
+    [ "views", null, [
+      [ "pixel_grid_view", "classviews_1_1pixel__grid__view.html", null ]
     ] ]
 ];

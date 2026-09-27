@@ -96,20 +96,10 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2deep-learning-visualizer_2deep-learning-visualizer_2README"></a> </p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Downloading and Building</h1>
-<p>Make sure to clone recursively for the glfw submodule.</p>
+<p>Make sure to clone recursively for the external library submodules.</p>
 <div class="fragment"><div class="line">git clone --recursive https://github.com/nycrat/deep-learning-visualizer</div>
-</div><!-- fragment --><p>Run the cmake and make to get a statically linked library to place in lib/.</p>
-<p>Used the <a href="https://glad.dav1d.de/">GLAD online tool</a> to generate code to load OpenGL functions at run-time. The specfic configuration can be found <a href="https://glad.dav1d.de/#profile=core&amp;language=c&amp;specification=gl&amp;loader=on&amp;api=gl%3D3.3">here</a>.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Setup Script</h2>
-<div class="fragment"><div class="line">cd glfw</div>
-<div class="line">cmake -S . -B build</div>
-<div class="line">cd build</div>
-<div class="line">make</div>
-<div class="line">cp src/libglfw3.a ../../lib</div>
-<div class="line">cd ../..</div>
-<div class="line">make run</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><p>Run the setup script (<code>./scripts/setup.sh</code>) before attempting to build this project.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Generating compile_commands.json</h1>
 <p>To get LSP working properly, use <a href="https://github.com/rizsotto/Bear">bear</a>:</p>
 <div class="fragment"><div class="line">make clean</div>

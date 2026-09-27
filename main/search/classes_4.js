@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mnist_0',['mnist',['../classmlp_1_1mnist.html',1,'mlp']]]
+  ['layer_0',['layer',['../structmodels_1_1layer.html',1,'models']]]
 ];

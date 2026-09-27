@@ -25,10 +25,8 @@
 var NAVTREE =
 [
   [ "Deep Learning Visualizer", "index.html", [
-    [ "Downloading and Building", "index.html#autotoc_md1", [
-      [ "Setup Script", "index.html#autotoc_md2", null ]
-    ] ],
-    [ "Generating compile_commands.json", "index.html#autotoc_md3", null ],
+    [ "Downloading and Building", "index.html#autotoc_md1", null ],
+    [ "Generating compile_commands.json", "index.html#autotoc_md2", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
