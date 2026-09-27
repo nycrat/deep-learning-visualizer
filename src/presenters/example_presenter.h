@@ -19,7 +19,8 @@ public:
                     std::unique_ptr<views::example_view> view,
                     engine::input::event_bus &bus)
       : view_(std::move(view)), model_(std::move(model)), bus_(bus) {
-    bus.subscribe([&](auto k, auto a) { this->handle_key_event(k, a); });
+    using namespace engine::input;
+    bus.subscribe([&](key k, auto a) { this->handle_key_event(k, a); });
     bus.subscribe([&](auto pos) { this->handle_cursor_event(pos); });
   }
 

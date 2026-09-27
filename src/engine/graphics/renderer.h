@@ -84,7 +84,7 @@ public:
 
 private:
   shader program_{"src/engine/graphics/shaders/example.vert",
-                         "src/engine/graphics/shaders/example.frag"};
+                  "src/engine/graphics/shaders/example.frag"};
   std::vector<Eigen::Vector2f> vertices_{};
   unsigned int vao_{};
   unsigned int vbo_{};

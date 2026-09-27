@@ -4,13 +4,13 @@
 #include <print>
 
 #include "engine/application.h"
-#include "scenes/example_scene.h"
+#include "scenes/pixel_grid_scene.h"
 
 int main() { // NOLINT(bugprone-exception-escape)
   try {
     engine::application app;
-    auto scene = std::make_unique<scenes::example_scene>(app.renderer(),
-                                                         app.event_bus());
+    auto scene = std::make_unique<scenes::pixel_grid_scene>(app.renderer(),
+                                                            app.event_bus());
     app.set_scene(std::move(scene));
     app.run();
   } catch (const std::exception &e) {

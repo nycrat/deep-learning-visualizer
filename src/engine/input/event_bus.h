@@ -27,6 +27,18 @@ public:
   }
 
   /**
+   * Informs all subscribers of a new mouse button event.
+   *
+   * @param mouse The mouse button whose status is changed.
+   * @param action The specific action that is performed.
+   */
+  void emit(mouse mouse, action action) {
+    for (auto &func : mouse_callbacks_) {
+      func(mouse, action);
+    }
+  }
+
+  /**
    * Informs all subscribers of a new cursor movement event.
    *
    * @param cursor_pos The new cursor position.
@@ -47,6 +59,15 @@ public:
   }
 
   /**
+   * Attaches a subscriber to new mouse button events.
+   *
+   * @param func A function to be called when an event is emitted.
+   */
+  void subscribe(std::function<void(mouse, action)> func) {
+    mouse_callbacks_.push_back(func);
+  }
+
+  /**
    * Attaches a subscriber to new cursor movement events.
    *
    * @param func A function to be called when an event is emitted.
@@ -57,6 +78,7 @@ public:
 
 private:
   std::vector<std::function<void(key, action)>> key_callbacks_;
+  std::vector<std::function<void(mouse, action)>> mouse_callbacks_;
   std::vector<std::function<void(Eigen::Vector2f)>> cursor_callbacks_;
 };
 

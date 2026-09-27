@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
+#include "engine/input/constants.h"
 #include "engine/input/event_bus.h"
 #include "shared/constants.h"
 
@@ -54,6 +55,15 @@ window::window(input::event_bus &bus)
         const auto normalized_width{2 * x / width - 1.0f};
         const auto normalized_height{-2 * y / height + 1.0f};
         bus_ptr->emit(Eigen::Vector2f{normalized_width, normalized_height});
+      });
+
+  glfwSetMouseButtonCallback(
+      // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
+      base_window_, [](GLFWwindow *window, int button, int action, int mods) {
+        auto *bus_ptr =
+            static_cast<input::event_bus *>(glfwGetWindowUserPointer(window));
+        bus_ptr->emit(static_cast<input::mouse>(button),
+                      static_cast<input::action>(action));
       });
 
   // Disables vsync
