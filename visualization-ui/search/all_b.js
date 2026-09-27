@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['render_0',['render',['../classengine_1_1scene.html#abe06a36870661b6895f296bd25c81319',1,'engine::scene::render()'],['../classscenes_1_1example__scene.html#a6ebaf3ec51ed8062789bb7986e2488f1',1,'scenes::example_scene::render()']]],
-  ['renderer_1',['renderer',['../classengine_1_1graphics_1_1renderer.html',1,'engine::graphics::renderer'],['../classengine_1_1graphics_1_1renderer.html#afddc9aa670e36b3313049159e0459f3a',1,'engine::graphics::renderer::renderer()']]],
-  ['renderer_2eh_2',['renderer.h',['../renderer_8h.html',1,'']]],
-  ['run_3',['run',['../classengine_1_1application.html#a02e555ddf78a5e647db2e1d8c49336a7',1,'engine::application']]]
+  ['pixel_5fgrid_5fpresenter_0',['pixel_grid_presenter',['../classpresenters_1_1pixel__grid__presenter.html',1,'presenters']]],
+  ['pixel_5fgrid_5fpresenter_2eh_1',['pixel_grid_presenter.h',['../pixel__grid__presenter_8h.html',1,'']]],
+  ['pixel_5fgrid_5fscene_2',['pixel_grid_scene',['../classscenes_1_1pixel__grid__scene.html',1,'scenes']]],
+  ['pixel_5fgrid_5fscene_2eh_3',['pixel_grid_scene.h',['../pixel__grid__scene_8h.html',1,'']]],
+  ['pixel_5fgrid_5fview_4',['pixel_grid_view',['../classviews_1_1pixel__grid__view.html',1,'views']]],
+  ['pixel_5fgrid_5fview_2eh_5',['pixel_grid_view.h',['../pixel__grid__view_8h.html',1,'']]]
 ];

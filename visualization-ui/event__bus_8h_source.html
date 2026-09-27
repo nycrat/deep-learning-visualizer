@@ -118,38 +118,55 @@ $(document).ready(function(){initNavTree('event__bus_8h_source.html',''); initRe
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
 </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">   34</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">emit</a>(<span class="keyword">const</span> Eigen::Vector2f &amp;cursor_pos) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;func : cursor_callbacks_) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      func(cursor_pos);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a4555e3da77b918197a016220d13c1f2e">   35</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a4555e3da77b918197a016220d13c1f2e">emit</a>(mouse mouse, action action) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;func : mouse_callbacks_) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      func(mouse, action);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
 </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">   45</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">subscribe</a>(std::function&lt;<span class="keywordtype">void</span>(key, action)&gt; func) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    key_callbacks_.push_back(func);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">   46</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">emit</a>(<span class="keyword">const</span> Eigen::Vector2f &amp;cursor_pos) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;func : cursor_callbacks_) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      func(cursor_pos);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">   54</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">subscribe</a>(std::function&lt;<span class="keywordtype">void</span>(Eigen::Vector2f)&gt; func) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    cursor_callbacks_.push_back(func);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">   57</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">subscribe</a>(std::function&lt;<span class="keywordtype">void</span>(key, action)&gt; func) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    key_callbacks_.push_back(func);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
 </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  std::vector&lt;std::function&lt;void(key, action)&gt;&gt; key_callbacks_;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  std::vector&lt;std::function&lt;void(Eigen::Vector2f)&gt;&gt; cursor_callbacks_;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#ae8fa0922cd18d6b38de66f1b48c1d63b">   66</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#ae8fa0922cd18d6b38de66f1b48c1d63b">subscribe</a>(std::function&lt;<span class="keywordtype">void</span>(mouse, action)&gt; func) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    mouse_callbacks_.push_back(func);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  }</div>
 </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace engine::input</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">   75</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">subscribe</a>(std::function&lt;<span class="keywordtype">void</span>(Eigen::Vector2f)&gt; func) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    cursor_callbacks_.push_back(func);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  std::vector&lt;std::function&lt;void(key, action)&gt;&gt; key_callbacks_;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  std::vector&lt;std::function&lt;void(mouse, action)&gt;&gt; mouse_callbacks_;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  std::vector&lt;std::function&lt;void(Eigen::Vector2f)&gt;&gt; cursor_callbacks_;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>} <span class="comment">// namespace engine::input</span></div>
 <div class="ttc" id="aclassengine_1_1input_1_1event__bus_html"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html">engine::input::event_bus</a></div><div class="ttdoc">An event dispatcher for input events.</div><div class="ttdef"><b>Definition</b> event_bus.h:15</div></div>
-<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a05132ffcfa6b29718f2e4bdf3000e378"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">engine::input::event_bus::emit</a></div><div class="ttdeci">void emit(const Eigen::Vector2f &amp;cursor_pos)</div><div class="ttdoc">Informs all subscribers of a new cursor movement event.</div><div class="ttdef"><b>Definition</b> event_bus.h:34</div></div>
+<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a05132ffcfa6b29718f2e4bdf3000e378"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378">engine::input::event_bus::emit</a></div><div class="ttdeci">void emit(const Eigen::Vector2f &amp;cursor_pos)</div><div class="ttdoc">Informs all subscribers of a new cursor movement event.</div><div class="ttdef"><b>Definition</b> event_bus.h:46</div></div>
 <div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a0991405ce87c4cd8c94e82790887be96"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a0991405ce87c4cd8c94e82790887be96">engine::input::event_bus::emit</a></div><div class="ttdeci">void emit(key key, action action)</div><div class="ttdoc">Informs all subscribers of a new keyboard event.</div><div class="ttdef"><b>Definition</b> event_bus.h:23</div></div>
-<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a405f3cb8231415f761e7800f352d8825"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">engine::input::event_bus::subscribe</a></div><div class="ttdeci">void subscribe(std::function&lt; void(Eigen::Vector2f)&gt; func)</div><div class="ttdoc">Attaches a subscriber to new cursor movement events.</div><div class="ttdef"><b>Definition</b> event_bus.h:54</div></div>
-<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a8f64ea5b628a94e1ce187ac4ec26d5a4"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">engine::input::event_bus::subscribe</a></div><div class="ttdeci">void subscribe(std::function&lt; void(key, action)&gt; func)</div><div class="ttdoc">Attaches a subscriber to new keyboard events.</div><div class="ttdef"><b>Definition</b> event_bus.h:45</div></div>
+<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a405f3cb8231415f761e7800f352d8825"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825">engine::input::event_bus::subscribe</a></div><div class="ttdeci">void subscribe(std::function&lt; void(Eigen::Vector2f)&gt; func)</div><div class="ttdoc">Attaches a subscriber to new cursor movement events.</div><div class="ttdef"><b>Definition</b> event_bus.h:75</div></div>
+<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a4555e3da77b918197a016220d13c1f2e"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a4555e3da77b918197a016220d13c1f2e">engine::input::event_bus::emit</a></div><div class="ttdeci">void emit(mouse mouse, action action)</div><div class="ttdoc">Informs all subscribers of a new mouse button event.</div><div class="ttdef"><b>Definition</b> event_bus.h:35</div></div>
+<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_a8f64ea5b628a94e1ce187ac4ec26d5a4"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4">engine::input::event_bus::subscribe</a></div><div class="ttdeci">void subscribe(std::function&lt; void(key, action)&gt; func)</div><div class="ttdoc">Attaches a subscriber to new keyboard events.</div><div class="ttdef"><b>Definition</b> event_bus.h:57</div></div>
+<div class="ttc" id="aclassengine_1_1input_1_1event__bus_html_ae8fa0922cd18d6b38de66f1b48c1d63b"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html#ae8fa0922cd18d6b38de66f1b48c1d63b">engine::input::event_bus::subscribe</a></div><div class="ttdeci">void subscribe(std::function&lt; void(mouse, action)&gt; func)</div><div class="ttdoc">Attaches a subscriber to new mouse button events.</div><div class="ttdef"><b>Definition</b> event_bus.h:66</div></div>
 <div class="ttc" id="aengine_2input_2constants_8h_html"><div class="ttname"><a href="engine_2input_2constants_8h.html">constants.h</a></div><div class="ttdoc">Defines input event related enums.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

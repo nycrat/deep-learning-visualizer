@@ -20,10 +20,12 @@ var annotated_dup =
       [ "network", "classmodels_1_1network.html", "classmodels_1_1network" ]
     ] ],
     [ "presenters", null, [
-      [ "example_presenter", "classpresenters_1_1example__presenter.html", null ]
+      [ "example_presenter", "classpresenters_1_1example__presenter.html", null ],
+      [ "pixel_grid_presenter", "classpresenters_1_1pixel__grid__presenter.html", null ]
     ] ],
     [ "scenes", null, [
-      [ "example_scene", "classscenes_1_1example__scene.html", "classscenes_1_1example__scene" ]
+      [ "example_scene", "classscenes_1_1example__scene.html", "classscenes_1_1example__scene" ],
+      [ "pixel_grid_scene", "classscenes_1_1pixel__grid__scene.html", "classscenes_1_1pixel__grid__scene" ]
     ] ],
     [ "shared", null, [
       [ "idx_matrix", "classshared_1_1idx__matrix.html", "classshared_1_1idx__matrix" ]
@@ -31,6 +33,7 @@ var annotated_dup =
     [ "views", null, [
       [ "example_view", "classviews_1_1example__view.html", null ],
       [ "example_view_gl", "classviews_1_1example__view__gl.html", null ],
-      [ "example_view_print", "classviews_1_1example__view__print.html", null ]
+      [ "example_view_print", "classviews_1_1example__view__print.html", null ],
+      [ "pixel_grid_view", "classviews_1_1pixel__grid__view.html", null ]
     ] ]
 ];
