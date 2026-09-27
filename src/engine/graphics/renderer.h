@@ -97,8 +97,8 @@ private:
     Eigen::Vector3f color;
   };
 
-  shader program_{"src/engine/graphics/shaders/example.vert",
-                  "src/engine/graphics/shaders/example.frag"};
+  shader program_{"src/engine/graphics/shaders/generic.vert",
+                  "src/engine/graphics/shaders/generic.frag"};
   std::vector<vertex> vertices_{};
   Eigen::Vector3f color_{};
   unsigned int vao_{};
