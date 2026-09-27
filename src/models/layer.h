@@ -1,8 +1,10 @@
 #pragma once
 
+/** @file */
+
 #include <Eigen/Core>
 
-namespace mlp {
+namespace models {
 
 struct layer {
   layer(int n, int prev_n);
@@ -18,4 +20,4 @@ struct layer {
   bool is_output{false};
 };
 
-} // namespace mlp
+} // namespace models

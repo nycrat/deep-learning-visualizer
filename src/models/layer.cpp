@@ -2,7 +2,7 @@
 
 #include "shared/math.h"
 
-namespace mlp {
+namespace models {
 
 layer::layer(int n, int prev_n)
     : activations(n), z_values(n), biases(n), weights(n, prev_n) {
@@ -25,4 +25,4 @@ int layer::n() const {
   return static_cast<int>(weights.rows());
 }
 
-} // namespace mlp
+} // namespace models

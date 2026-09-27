@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <vector>
 
-#include "mlp/layer.h"
+#include "models/layer.h"
 #include "shared/math.h"
 
 namespace {
@@ -25,7 +25,7 @@ const float learning_rate = 0.10f;
 
 } // namespace
 
-namespace mlp {
+namespace models {
 
 network::network(const std::vector<int> &layer_sizes) {
   initialize_layers(layer_sizes);
@@ -107,7 +107,7 @@ void network::initialize_weights() {
 }
 
 float network::backpropagate(
-    const std::vector<mlp::data_point> &training_batch) {
+    const std::vector<models::data_point> &training_batch) {
   for (auto &gradient_layer : gradient_sum_layers_) {
     gradient_layer.biases.setZero();
     gradient_layer.weights.setZero();
@@ -143,7 +143,7 @@ const Eigen::VectorXf &network::output() const {
   return layers_.back().activations;
 }
 
-float network::backpropagate_once(const mlp::data_point &data_point) {
+float network::backpropagate_once(const models::data_point &data_point) {
   set_input(data_point.input);
   update();
 
@@ -198,4 +198,4 @@ void network::initialize_layers(const std::vector<int> &layer_sizes) {
   gradient_sum_layers_.back().is_output = true;
 }
 
-} // namespace mlp
+} // namespace models

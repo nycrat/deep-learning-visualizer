@@ -10,4 +10,5 @@ Checks: >
 CheckOptions:
   bugprone-easily-swappable-parameters.MinimumLength: 3
   cppcoreguidelines-avoid-magic-numbers.IgnorePowersOf2IntegerValues: true
+  cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor: true
 WarningsAsErrors: "*"
