@@ -45,6 +45,15 @@ public:
   void end_frame();
 
   /**
+   * Sets the current color used when buffering shapes to be drawn.
+   *
+   * @param color A RGB color vector.
+   */
+  void set_color(const Eigen::Vector3f &color) {
+    color_ = color;
+  }
+
+  /**
    * Buffers a triangle to be drawn when the frame ends.
    *
    * @param p1 The first point of the triangle.
@@ -83,9 +92,15 @@ public:
   void draw_text(const Eigen::Vector2f &position, const std::string &text);
 
 private:
+  struct vertex {
+    Eigen::Vector2f position;
+    Eigen::Vector3f color;
+  };
+
   shader program_{"src/engine/graphics/shaders/example.vert",
                   "src/engine/graphics/shaders/example.frag"};
-  std::vector<Eigen::Vector2f> vertices_{};
+  std::vector<vertex> vertices_{};
+  Eigen::Vector3f color_{};
   unsigned int vao_{};
   unsigned int vbo_{};
 

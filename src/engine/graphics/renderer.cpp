@@ -1,5 +1,6 @@
 #include "engine/graphics/renderer.h"
 
+#include <cstddef>
 #include <glad/glad.h>
 #include <stdexcept>
 
@@ -15,13 +16,19 @@ renderer::renderer() {
   glBindBuffer(GL_ARRAY_BUFFER, vbo_);
 
   // Pre-allocate memory block on GPU
-  glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES * sizeof(Eigen::Vector2f), nullptr,
+  glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES * sizeof(vertex), nullptr,
                GL_DYNAMIC_DRAW);
 
   // Position attribute
-  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Eigen::Vector2f),
-                        nullptr);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), nullptr);
   glEnableVertexAttribArray(0);
+
+  // Color attribute
+  glVertexAttribPointer(
+      1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex),
+      // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+      reinterpret_cast<void *>(offsetof(vertex, color)));
+  glEnableVertexAttribArray(1);
 }
 
 renderer::~renderer() {
@@ -34,15 +41,14 @@ void renderer::begin_frame() {
 }
 
 void renderer::end_frame() {
-  glClearColor(1.0, 1.0, 0.0, 1.0);
+  glClearColor(0.0, 0.0, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
   program_.use();
   glBindBuffer(GL_ARRAY_BUFFER, vbo_);
-  glBufferSubData(
-      GL_ARRAY_BUFFER, 0,
-      static_cast<GLsizeiptr>(vertices_.size() * sizeof(Eigen::Vector2f)),
-      vertices_.data());
+  glBufferSubData(GL_ARRAY_BUFFER, 0,
+                  static_cast<GLsizeiptr>(vertices_.size() * sizeof(vertex)),
+                  vertices_.data());
 
   glBindVertexArray(vao_);
   glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices_.size()));
@@ -51,9 +57,9 @@ void renderer::end_frame() {
 void renderer::draw_triangle(const Eigen::Vector2f &p1,
                              const Eigen::Vector2f &p2,
                              const Eigen::Vector2f &p3) {
-  vertices_.push_back(p1);
-  vertices_.push_back(p2);
-  vertices_.push_back(p3);
+  vertices_.emplace_back(p1, color_);
+  vertices_.emplace_back(p2, color_);
+  vertices_.emplace_back(p3, color_);
 }
 
 void renderer::draw_quad(const Eigen::Vector2f &p1, const Eigen::Vector2f &p2,
