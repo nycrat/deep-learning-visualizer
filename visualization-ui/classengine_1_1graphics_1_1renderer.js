@@ -7,5 +7,6 @@ var classengine_1_1graphics_1_1renderer =
     [ "draw_quad", "classengine_1_1graphics_1_1renderer.html#af5d35ac2fb5dbf267445ee1d8f5c0ce5", null ],
     [ "draw_text", "classengine_1_1graphics_1_1renderer.html#a963171395dc44330d3731bec0dfa894e", null ],
     [ "draw_triangle", "classengine_1_1graphics_1_1renderer.html#ac16118fd20690a46a2c128b700f53380", null ],
-    [ "end_frame", "classengine_1_1graphics_1_1renderer.html#a4ca73282c1e5194bb39e4eef8da4198a", null ]
+    [ "end_frame", "classengine_1_1graphics_1_1renderer.html#a4ca73282c1e5194bb39e4eef8da4198a", null ],
+    [ "set_color", "classengine_1_1graphics_1_1renderer.html#ae1c816c3af63d66a8145a5585b7892be", null ]
 ];

@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classengine_1_1graphics_1_1renderer.ht
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classengine_1_1graphics_1_1renderer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">engine::graphics::renderer Class Reference</div></div>
@@ -131,6 +132,9 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end_frame</b> ()</td></tr>
 <tr class="memdesc:a4ca73282c1e5194bb39e4eef8da4198a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a frame by clearing what is currently drawn and drawing the vertices. <br /></td></tr>
 <tr class="separator:a4ca73282c1e5194bb39e4eef8da4198a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c816c3af63d66a8145a5585b7892be" id="r_ae1c816c3af63d66a8145a5585b7892be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#ae1c816c3af63d66a8145a5585b7892be">set_color</a> (const Eigen::Vector3f &amp;color)</td></tr>
+<tr class="memdesc:ae1c816c3af63d66a8145a5585b7892be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current color used when buffering shapes to be drawn.  <br /></td></tr>
+<tr class="separator:ae1c816c3af63d66a8145a5585b7892be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac16118fd20690a46a2c128b700f53380" id="r_ac16118fd20690a46a2c128b700f53380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classengine_1_1graphics_1_1renderer.html#ac16118fd20690a46a2c128b700f53380">draw_triangle</a> (const Eigen::Vector2f &amp;p1, const Eigen::Vector2f &amp;p2, const Eigen::Vector2f &amp;p3)</td></tr>
 <tr class="memdesc:ac16118fd20690a46a2c128b700f53380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffers a triangle to be drawn when the frame ends.  <br /></td></tr>
 <tr class="separator:ac16118fd20690a46a2c128b700f53380"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -331,6 +335,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>end_frame</b> ()</td>
     <tr><td class="paramname">p1</td><td>The first point of the triangle. </td></tr>
     <tr><td class="paramname">p2</td><td>The second point of the triangle. </td></tr>
     <tr><td class="paramname">p3</td><td>The third point of the triangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1c816c3af63d66a8145a5585b7892be" name="ae1c816c3af63d66a8145a5585b7892be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1c816c3af63d66a8145a5585b7892be">&#9670;&#160;</a></span>set_color()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engine::graphics::renderer::set_color </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector3f &amp;&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the current color used when buffering shapes to be drawn. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>A RGB color vector. </td></tr>
   </table>
   </dd>
 </dl>
