@@ -12,6 +12,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: install ubuntu dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-14 libwayland-dev libxkbcommon-dev xorg-dev
+
+      - name: setup
+        run: ./scripts/setup.sh
 
       - name: lint
         run: make lint
