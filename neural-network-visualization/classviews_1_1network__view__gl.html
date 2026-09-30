@@ -114,8 +114,8 @@ Inheritance diagram for views::network_view_gl:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a027aaa1f794cb9be9c8a0446ea0797b8" id="r_a027aaa1f794cb9be9c8a0446ea0797b8"><td class="memItemLeft" align="right" valign="top"><a id="a027aaa1f794cb9be9c8a0446ea0797b8" name="a027aaa1f794cb9be9c8a0446ea0797b8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>network_view_gl</b> (<a class="el" href="classengine_1_1graphics_1_1renderer.html">engine::graphics::renderer</a> &amp;renderer)</td></tr>
+<tr class="memitem:a027aaa1f794cb9be9c8a0446ea0797b8" id="r_a027aaa1f794cb9be9c8a0446ea0797b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviews_1_1network__view__gl.html#a027aaa1f794cb9be9c8a0446ea0797b8">network_view_gl</a> (<a class="el" href="classengine_1_1graphics_1_1renderer.html">engine::graphics::renderer</a> &amp;renderer)</td></tr>
+<tr class="memdesc:a027aaa1f794cb9be9c8a0446ea0797b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new network view.  <br /></td></tr>
 <tr class="separator:a027aaa1f794cb9be9c8a0446ea0797b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad73189f2bba85bfb82d3a41110333be1" id="r_ad73189f2bba85bfb82d3a41110333be1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviews_1_1network__view__gl.html#ad73189f2bba85bfb82d3a41110333be1">draw_network</a> (const std::vector&lt; <a class="el" href="structmodels_1_1layer.html">models::layer</a> &gt; &amp;layers) override</td></tr>
 <tr class="memdesc:ad73189f2bba85bfb82d3a41110333be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws every layer as a column of neurons, with a connection between each pair of adjacent layers.  <br /></td></tr>
@@ -126,7 +126,42 @@ Public Member Functions</h2></td></tr>
 <p>Neuron brightness follows its activation, so the picture is driven by whatever is currently in the input layer. Connections are colored by the sign of their weight and faded by how much that weight actually contributes, so the bright ones are the ones doing the work for this particular input.</p>
 <p>The input layer is drawn as the image it is, a grid of lit pixels, since it has no incoming weights and 784 dots in a column would be unreadable.</p>
 <p>Only the strongest connections into each neuron are drawn. Adjacent layers are fully connected, which for this network is over 130,000 connections, more than the vertex buffer can hold and far more than anyone can read. The truncation is per destination neuron rather than global, so no neuron is left with an empty fan of inputs. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a027aaa1f794cb9be9c8a0446ea0797b8" name="a027aaa1f794cb9be9c8a0446ea0797b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027aaa1f794cb9be9c8a0446ea0797b8">&#9670;&#160;</a></span>network_view_gl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">views::network_view_gl::network_view_gl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classengine_1_1graphics_1_1renderer.html">engine::graphics::renderer</a> &amp;&#160;</td>
+          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new network view. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>The renderer to submit shapes to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad73189f2bba85bfb82d3a41110333be1" name="ad73189f2bba85bfb82d3a41110333be1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad73189f2bba85bfb82d3a41110333be1">&#9670;&#160;</a></span>draw_network()</h2>
 
@@ -146,7 +181,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -163,8 +198,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/runner/work/deep-learning-visualizer/deep-learning-visualizer/src/views/<a class="el" href="network__view__gl_8h_source.html">network_view_gl.h</a></li>
+<li>/home/runner/work/deep-learning-visualizer/deep-learning-visualizer/src/views/<b>network_view_gl.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
