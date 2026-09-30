@@ -1,0 +1,3 @@
+---
+# Mirrors the `make lint` target, which skips the tests directory.
+Checks: '-*,clang-diagnostic-*'

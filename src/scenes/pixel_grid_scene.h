@@ -7,7 +7,7 @@
 #include "engine/scene.h"
 #include "models/mnist.h"
 #include "presenters/pixel_grid_presenter.h"
-#include "views/pixel_grid_view.h"
+#include "views/pixel_grid_view_gl.h"
 #include <memory>
 
 namespace scenes {
@@ -17,7 +17,7 @@ public:
   pixel_grid_scene(engine::graphics::renderer &renderer,
                    engine::input::event_bus &bus)
       : presenter_(std::make_unique<models::mnist>("data/mnist/trained.mlp"),
-                   std::make_unique<views::pixel_grid_view>(renderer), bus) {
+                   std::make_unique<views::pixel_grid_view_gl>(renderer), bus) {
   }
 
   void render() override {
