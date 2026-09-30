@@ -27,6 +27,9 @@ var annotated_dup =
     [ "shared", null, [
       [ "idx_matrix", "classshared_1_1idx__matrix.html", "classshared_1_1idx__matrix" ]
     ] ],
+    [ "test_helpers", null, [
+      [ "temp_file", "classtest__helpers_1_1temp__file.html", "classtest__helpers_1_1temp__file" ]
+    ] ],
     [ "views", null, [
       [ "pixel_grid_view", "classviews_1_1pixel__grid__view.html", null ],
       [ "pixel_grid_view_gl", "classviews_1_1pixel__grid__view__gl.html", null ]

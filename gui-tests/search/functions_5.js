@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['set_5fcolor_0',['set_color',['../classengine_1_1graphics_1_1renderer.html#ae1c816c3af63d66a8145a5585b7892be',1,'engine::graphics::renderer']]],
-  ['set_5fscene_1',['set_scene',['../classengine_1_1application.html#aaf0be68edf3966bb52391e20eb6b6312',1,'engine::application']]],
-  ['shader_2',['shader',['../classengine_1_1graphics_1_1shader.html#a3bec33ae39d22c9cf3e1be739fc4e5f2',1,'engine::graphics::shader']]],
-  ['should_5fclose_3',['should_close',['../classengine_1_1window.html#af69a702b5e767f3a181276d35e8111d2',1,'engine::window']]],
-  ['subscribe_4',['subscribe',['../classengine_1_1input_1_1event__bus.html#a8f64ea5b628a94e1ce187ac4ec26d5a4',1,'engine::input::event_bus::subscribe(std::function&lt; void(key, action)&gt; func)'],['../classengine_1_1input_1_1event__bus.html#ae8fa0922cd18d6b38de66f1b48c1d63b',1,'engine::input::event_bus::subscribe(std::function&lt; void(mouse, action)&gt; func)'],['../classengine_1_1input_1_1event__bus.html#a405f3cb8231415f761e7800f352d8825',1,'engine::input::event_bus::subscribe(std::function&lt; void(Eigen::Vector2f)&gt; func)']]],
-  ['swap_5fbuffers_5',['swap_buffers',['../classengine_1_1window.html#ad2ca0bf7d6f8a2752db224d75446f0a0',1,'engine::window']]]
+  ['render_0',['render',['../classengine_1_1scene.html#abe06a36870661b6895f296bd25c81319',1,'engine::scene::render()'],['../classscenes_1_1pixel__grid__scene.html#a7241aa5940cd8c4601c5886b0e8d2b2e',1,'scenes::pixel_grid_scene::render()']]],
+  ['renderer_1',['renderer',['../classengine_1_1graphics_1_1renderer.html#afddc9aa670e36b3313049159e0459f3a',1,'engine::graphics::renderer']]],
+  ['run_2',['run',['../classengine_1_1application.html#a02e555ddf78a5e647db2e1d8c49336a7',1,'engine::application']]]
 ];

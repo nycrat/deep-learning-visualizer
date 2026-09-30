@@ -17,5 +17,6 @@ var hierarchy =
       [ "scenes::pixel_grid_scene", "classscenes_1_1pixel__grid__scene.html", null ]
     ] ],
     [ "engine::graphics::shader", "classengine_1_1graphics_1_1shader.html", null ],
+    [ "test_helpers::temp_file", "classtest__helpers_1_1temp__file.html", null ],
     [ "engine::window", "classengine_1_1window.html", null ]
 ];
