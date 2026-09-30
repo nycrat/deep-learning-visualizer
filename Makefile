@@ -79,6 +79,10 @@ ci-format-check:
 	clang-format --dry-run --Werror $(SRCS) $(HRDS)
 	clang-format --dry-run --Werror $(filter-out tests/catch_amalgamated.cpp,$(TEST_SRCS)) $(filter-out tests/catch_amalgamated.h,$(TEST_HRDS)) -i
 
+.PHONY: docs
+docs:
+	cd docs && doxygen
+
 .PHONY: clean
 clean:
 	rm -rf bin build

@@ -22,6 +22,9 @@ namespace test_helpers {
  */
 class temp_file {
 public:
+  /**
+   * @param name A suffix which keeps the files of separate tests apart.
+   */
   explicit temp_file(std::string_view name)
       : path_{std::filesystem::temp_directory_path() /
               (std::string{"deep_learning_visualizer_"} + std::string{name} +
@@ -55,6 +58,9 @@ public:
                static_cast<std::streamsize>(bytes.size()));
   }
 
+  /**
+   * @return The path of the scratch file.
+   */
   [[nodiscard]] const std::filesystem::path &path() const {
     return path_;
   }
@@ -67,6 +73,11 @@ private:
  * Builds the header of an IDX file, which is a null magic number, a one byte
  * data type, a one byte dimension count, and then the big endian size of each
  * dimension.
+ *
+ * @param data_type The type of the stored data, such as 0x08 for a byte.
+ * @param dimensions The size of each dimension of the data.
+ *
+ * @return The bytes which precede the data in an IDX file.
  */
 inline std::vector<std::uint8_t>
 idx_header(std::uint8_t data_type,
@@ -84,6 +95,14 @@ idx_header(std::uint8_t data_type,
   return header;
 }
 
+/**
+ * Matches a float against a target within an absolute tolerance.
+ *
+ * @param target The expected value.
+ * @param epsilon The largest accepted absolute difference.
+ *
+ * @return A matcher for use with CHECK_THAT and REQUIRE_THAT.
+ */
 inline Catch::Matchers::WithinAbsMatcher within_abs(float target,
                                                     double epsilon = 1e-5) {
   return Catch::Matchers::WithinAbs(static_cast<double>(target), epsilon);
