@@ -54,8 +54,6 @@ public:
 
 private:
   GLFWwindow *base_window_{nullptr};
-
-  static constexpr int UI_SCALE{30};
 };
 
 } // namespace engine

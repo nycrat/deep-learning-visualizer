@@ -6,7 +6,7 @@
 
 #include "engine/input/constants.h"
 #include "engine/input/event_bus.h"
-#include "shared/constants.h"
+#include "shared/layout.h"
 
 namespace engine {
 
@@ -18,8 +18,7 @@ window::window(input::event_bus &bus)
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, 0);
 
-        return glfwCreateWindow(shared::GRID_SIZE * UI_SCALE,
-                                shared::GRID_SIZE * UI_SCALE,
+        return glfwCreateWindow(shared::WINDOW_WIDTH, shared::WINDOW_HEIGHT,
                                 "digit classifier", nullptr, nullptr);
       }()) {
   if (!base_window_) {
