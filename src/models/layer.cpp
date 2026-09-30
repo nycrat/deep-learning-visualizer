@@ -5,7 +5,9 @@
 namespace models {
 
 layer::layer(int n, int prev_n)
-    : activations(n), z_values(n), biases(n), weights(n, prev_n) {
+    : activations(Eigen::VectorXf::Zero(n)), z_values(Eigen::VectorXf::Zero(n)),
+      biases(Eigen::VectorXf::Zero(n)),
+      weights(Eigen::MatrixXf::Zero(n, prev_n)) {
 }
 
 void layer::update(layer *previous_layer) {
