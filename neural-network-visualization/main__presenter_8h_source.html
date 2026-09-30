@@ -132,19 +132,19 @@ $(document).ready(function(){initNavTree('main__presenter_8h_source.html',''); i
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> draw_image();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">void</span> propagate();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  std::unique_ptr&lt;models::mnist&gt; model_;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::unique_ptr&lt;views::pixel_grid_view&gt; drawing_view_;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::unique_ptr&lt;views::network_view&gt; network_view_;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::reference_wrapper&lt;engine::input::event_bus&gt; bus_;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::array&lt;float, shared::TOTAL_PIXELS&gt; drawn_image_{};</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordtype">bool</span> mouse_pressed_{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">int</span> propagate();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::unique_ptr&lt;models::mnist&gt; model_;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::unique_ptr&lt;views::pixel_grid_view&gt; drawing_view_;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  std::unique_ptr&lt;views::network_view&gt; network_view_;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::reference_wrapper&lt;engine::input::event_bus&gt; bus_;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  std::array&lt;float, shared::TOTAL_PIXELS&gt; drawn_image_{};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">bool</span> mouse_pressed_{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
 </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>} <span class="comment">// namespace presenters</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <span class="comment">// namespace presenters</span></div>
 <div class="ttc" id="aclassengine_1_1input_1_1event__bus_html"><div class="ttname"><a href="classengine_1_1input_1_1event__bus.html">engine::input::event_bus</a></div><div class="ttdoc">An event dispatcher for input events.</div><div class="ttdef"><b>Definition</b> event_bus.h:15</div></div>
 <div class="ttc" id="aclasspresenters_1_1main__presenter_html"><div class="ttname"><a href="classpresenters_1_1main__presenter.html">presenters::main_presenter</a></div><div class="ttdoc">A presenter for the interactive MNIST pixel grid prediction.</div><div class="ttdef"><b>Definition</b> main_presenter.h:24</div></div>
 <div class="ttc" id="aengine_2input_2constants_8h_html"><div class="ttname"><a href="engine_2input_2constants_8h.html">constants.h</a></div><div class="ttdoc">Defines input event related enums.</div></div>
