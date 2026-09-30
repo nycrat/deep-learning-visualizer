@@ -93,22 +93,65 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Deep Learning Visualizer </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2deep-learning-visualizer_2deep-learning-visualizer_2README"></a> </p>
+<div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2deep-learning-visualizer_2deep-learning-visualizer_2README"></a> An interactive neural network. Paint a digit in a 28×28 grid with the mouse, press <code>space</code>, and the model tells you which digit it thinks you drew. Press <code>t</code> to train it on MNIST and watch the cost fall, then press <code>y</code> to measure its accuracy.</p>
+<p>The point is to make backpropagation and weight initialization something you can poke at rather than read about. Every prediction is computed live from the pixels under your cursor.</p>
 <h1><a class="anchor" id="autotoc_md6"></a>
-Downloading and Building</h1>
-<p>Make sure to clone recursively for the external library submodules.</p>
-<div class="fragment"><div class="line">git clone --recursive https://github.com/nycrat/deep-learning-visualizer</div>
-</div><!-- fragment --><p>Run the setup script (<code>./scripts/setup.sh</code>) before attempting to build this project.</p>
+Controls</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Input   </th><th class="markdownTableHeadNone">Action    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Left mouse button, drag   </td><td class="markdownTableBodyNone">Paint the digit    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>space</code>   </td><td class="markdownTableBodyNone">Predict the drawn digit, printed to the terminal    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>r</code>   </td><td class="markdownTableBodyNone">Clear the grid    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>t</code>   </td><td class="markdownTableBodyNone">Train on MNIST    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>y</code>   </td><td class="markdownTableBodyNone">Report accuracy on the MNIST test set    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>s</code>   </td><td class="markdownTableBodyNone">Save the current weights to <code>data/mnist/trained.mlp</code>   </td></tr>
+</table>
+<p>Predictions and training progress are printed to the terminal that launched the program, not drawn in the window.</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
+Requirements</h1>
+<p>The project targets a desktop OpenGL 3.3 core profile, so it needs a GPU and driver that can provide one. It builds on macOS and Linux, and CI runs it on Ubuntu.</p>
+<p>Building requires a C++23 compiler, CMake, and a few system libraries.</p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+macOS</h2>
+<p>Needs Xcode or the Command Line Tools for a C++23 compiler, plus CMake.</p>
+<div class="fragment"><div class="line">xcode-select --install</div>
+<div class="line">brew install cmake</div>
+</div><!-- fragment --><p>macOS is detected automatically and the required system frameworks are linked for you. No OpenGL library needs to be installed, since the system provides it.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Linux (Ubuntu and Debian)</h2>
+<div class="fragment"><div class="line">sudo apt-get install -y g++-14 cmake libwayland-dev libxkbcommon-dev xorg-dev</div>
+</div><!-- fragment --><p><code>libwayland-dev</code>, <code>libxkbcommon-dev</code>, and <code>xorg-dev</code> are what GLFW needs to create a window on Linux.</p>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Building</h1>
+<p>Clone with the submodules, since GLFW and FreeType are pulled in as git submodules and both need to be compiled before the project can link against them.</p>
+<div class="fragment"><div class="line">git clone --recursive https://github.com/nycrat/deep-learning-visualizer</div>
+<div class="line">cd deep-learning-visualizer</div>
+</div><!-- fragment --><p>Then build the dependencies. This installs GLFW and FreeType into <code>external/</code>, which is where the build looks for them.</p>
+<div class="fragment"><div class="line">./scripts/setup.sh</div>
+</div><!-- fragment --><p>The MNIST files are already committed under <code>data/mnist/</code>, so there is nothing else to download.</p>
+<p>Finally, build and run:</p>
+<div class="fragment"><div class="line">make</div>
+<div class="line">make run</div>
+</div><!-- fragment --><p><code>make</code> produces a debug build in <code>bin/debug/</code>. Set <code>BUILD_TYPE=release</code> for an optimized build in <code>bin/release/</code>:</p>
+<div class="fragment"><div class="line">make BUILD_TYPE=release</div>
+</div><!-- fragment --><p>Release builds use <code>-O3 -march=native</code>, so they are fast but not portable between machines.</p>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Running the tests</h1>
 <div class="fragment"><div class="line">make test</div>
 <div class="line">make test BUILD_TYPE=release</div>
 </div><!-- fragment --><p>See <a class="el" href="md_testing.html">docs/testing.md</a> for how the suite is laid out and how to write new tests.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Generating the documentation</h1>
 <div class="fragment"><div class="line">make docs</div>
 </div><!-- fragment --><p>Doxygen writes the site to <code>docs/html</code>, starting at <code>docs/html/index.html</code>. It is also published to GitHub Pages on every push; see <code>.github/workflows/docs.yml</code>.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Generating compile_commands.json</h1>
 <p>To get LSP working properly, use <a href="https://github.com/rizsotto/Bear">bear</a>:</p>
 <div class="fragment"><div class="line">make clean</div>
