@@ -25,8 +25,21 @@
 var NAVTREE =
 [
   [ "Deep Learning Visualizer", "index.html", [
-    [ "Downloading and Building", "index.html#autotoc_md1", null ],
-    [ "Generating compile_commands.json", "index.html#autotoc_md2", null ],
+    [ "Controls", "index.html#autotoc_md6", null ],
+    [ "Requirements", "index.html#autotoc_md7", [
+      [ "macOS", "index.html#autotoc_md8", null ],
+      [ "Linux (Ubuntu and Debian)", "index.html#autotoc_md9", null ]
+    ] ],
+    [ "Building", "index.html#autotoc_md10", null ],
+    [ "Running the tests", "index.html#autotoc_md11", null ],
+    [ "Generating the documentation", "index.html#autotoc_md12", null ],
+    [ "Generating compile_commands.json", "index.html#autotoc_md13", null ],
+    [ "Writing tests", "md_testing.html", [
+      [ "Running the suite", "md_testing.html#autotoc_md1", null ],
+      [ "Layout", "md_testing.html#autotoc_md2", null ],
+      [ "Conventions", "md_testing.html#autotoc_md3", null ],
+      [ "What is not tested", "md_testing.html#autotoc_md4", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
