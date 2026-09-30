@@ -17,7 +17,7 @@ namespace {
 
 using test_helpers::within_abs;
 
-using image = std::array<float, shared::TOTAL_PIXELS>;
+using image_array = std::array<float, shared::TOTAL_PIXELS>;
 
 /**
  * The value of the brush underneath the cursor and the value of a pixel one
@@ -26,21 +26,21 @@ using image = std::array<float, shared::TOTAL_PIXELS>;
 constexpr float BRUSH_CENTER{0.934031f};
 constexpr float BRUSH_EDGE{0.262443f};
 
-bool is_blank_image(const image &drawn) {
+bool is_blank_image(const image_array &drawn) {
   return std::ranges::all_of(drawn, [](float pixel) { return pixel == 0.0f; });
 }
 
-bool is_equal_image(const image &left, const image &right) {
+bool is_equal_image(const image_array &left, const image_array &right) {
   return left == right;
 }
 
-int count_drawn_pixels(const image &drawn) {
+int count_drawn_pixels(const image_array &drawn) {
   return static_cast<int>(
       std::ranges::count_if(drawn, [](float pixel) { return pixel > 0.0f; }));
 }
 
 struct grid_recorder {
-  image drawn{};
+  image_array drawn{};
   int draw_count{};
 
   [[nodiscard]] int non_zero_count() const {
@@ -53,7 +53,7 @@ public:
   explicit recording_view(grid_recorder &recorder) : recorder_{recorder} {
   }
 
-  void draw_grid(const image &image_data) override {
+  void draw_grid(const image_array &image_data) override {
     recorder_.drawn = image_data;
     recorder_.draw_count++;
   }
@@ -75,7 +75,7 @@ struct presenter_fixture {
     presenter.handle_cursor_event(position);
   }
 
-  [[nodiscard]] const image &image() {
+  [[nodiscard]] const image_array &image() {
     presenter.render();
     return recorder.drawn;
   }
@@ -88,7 +88,7 @@ const Eigen::Vector2f CENTER{0.0f, 0.0f};
 TEST_CASE("Test pixel grid presenter starts with a blank image") {
   presenter_fixture fixture{};
 
-  CHECK(fixture.image() == image{});
+  CHECK(fixture.image() == image_array{});
   CHECK(fixture.recorder.draw_count == 1);
 }
 
@@ -110,7 +110,7 @@ TEST_CASE("Test pixel grid presenter ignores the cursor without a click") {
 
   fixture.presenter.handle_cursor_event(CENTER);
 
-  CHECK(fixture.image() == image{});
+  CHECK(fixture.image() == image_array{});
 }
 
 TEST_CASE("Test pixel grid presenter draws where the cursor is") {
@@ -152,7 +152,7 @@ TEST_CASE("Test pixel grid presenter ignores the other mouse buttons") {
                                        engine::input::action::down);
   fixture.presenter.handle_cursor_event(CENTER);
 
-  CHECK(fixture.image() == image{});
+  CHECK(fixture.image() == image_array{});
 }
 
 TEST_CASE("Test pixel grid presenter keeps the brightest pixel") {
@@ -191,7 +191,7 @@ TEST_CASE("Test pixel grid presenter clears the image on r") {
   fixture.presenter.handle_key_event(engine::input::key::r,
                                      engine::input::action::down);
 
-  CHECK(fixture.image() == image{});
+  CHECK(fixture.image() == image_array{});
 }
 
 TEST_CASE("Test pixel grid presenter ignores key releases") {
