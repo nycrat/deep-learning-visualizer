@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['idx_5fheader_0',['idx_header',['../test__helpers_8h.html#a32854456a3504600a0e884e76d804eab',1,'test_helpers']]],
-  ['idx_5fmatrix_1',['idx_matrix',['../classshared_1_1idx__matrix.html#a1240f1b6d28d9433cfbe2fd3b9167cec',1,'shared::idx_matrix']]],
-  ['initialize_5fweights_2',['initialize_weights',['../classmodels_1_1network.html#a331bd306f47dd7ea7bcfbc8882614af5',1,'models::network']]],
-  ['is_5ffull_3',['is_full',['../classengine_1_1graphics_1_1renderer.html#a5d73dae441bd1d3a10dd8b4c92d906ab',1,'engine::graphics::renderer']]]
+  ['emit_0',['emit',['../classengine_1_1input_1_1event__bus.html#a0991405ce87c4cd8c94e82790887be96',1,'engine::input::event_bus::emit(key key, action action)'],['../classengine_1_1input_1_1event__bus.html#a4555e3da77b918197a016220d13c1f2e',1,'engine::input::event_bus::emit(mouse mouse, action action)'],['../classengine_1_1input_1_1event__bus.html#a05132ffcfa6b29718f2e4bdf3000e378',1,'engine::input::event_bus::emit(const Eigen::Vector2f &amp;cursor_pos)']]],
+  ['end_5fframe_1',['end_frame',['../classengine_1_1graphics_1_1renderer.html#a4ca73282c1e5194bb39e4eef8da4198a',1,'engine::graphics::renderer']]]
 ];
