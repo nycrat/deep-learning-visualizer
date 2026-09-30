@@ -54,6 +54,13 @@ public:
   }
 
   /**
+   * Checks if the frame has no room left for another shape.
+   */
+  [[nodiscard]] bool is_full() const {
+    return vertices_.size() + VERTICES_PER_QUAD > MAX_VERTICES;
+  }
+
+  /**
    * Buffers a triangle to be drawn when the frame ends.
    *
    * @param p1 The first point of the triangle.
@@ -104,7 +111,8 @@ private:
   unsigned int vao_{};
   unsigned int vbo_{};
 
-  static constexpr auto MAX_VERTICES{100000};
+  static constexpr auto MAX_VERTICES{100000uz};
+  static constexpr auto VERTICES_PER_QUAD{6uz};
 };
 
 } // namespace engine::graphics
