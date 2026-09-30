@@ -30,10 +30,7 @@ void main_presenter::handle_key_event(engine::input::key key,
   using namespace engine::input;
   if (action == action::down) {
     if (key == key::space) {
-      Eigen::Map<Eigen::VectorXf> input{drawn_image_.data(),
-                                        shared::GRID_SIZE * shared::GRID_SIZE};
-
-      std::println("{}", model_->predict(input));
+      std::println("{}", propagate());
     } else if (key == key::r) {
       drawn_image_.fill(0.0f);
       propagate();
@@ -60,24 +57,21 @@ void main_presenter::handle_cursor_event(
     return;
   }
 
-  const double cursor_offset{0.5};
-  const double brush_size{1.75};
+  const float cursor_offset{0.5f};
+  const float brush_size{1.75f};
 
-  const auto cell{shared::cursor_to_cell(cursor_position,
-                                         static_cast<float>(cursor_offset))};
-  const double scaled_x{cell.x()};
-  const double scaled_y{cell.y()};
+  const auto cell{shared::cursor_to_cell(cursor_position, cursor_offset)};
 
   for (int i{0}; i < shared::GRID_SIZE; i++) {
     for (int j{0}; j < shared::GRID_SIZE; j++) {
-      double distance_x{i - scaled_x};
-      double distance_y{j - scaled_y};
-      double distance{sqrt(distance_x * distance_x + distance_y * distance_y)};
-      auto pixel_index = i + j * shared::GRID_SIZE;
+      const auto dist_x{static_cast<float>(i) - cell.x()};
+      const auto dist_y{static_cast<float>(j) - cell.y()};
+      const auto distance{sqrt(dist_x * dist_x + dist_y * dist_y)};
+      const auto pixel_index = i + j * shared::GRID_SIZE;
 
-      drawn_image_.at(pixel_index) = std::max(
-          static_cast<float>(-std::pow(distance / brush_size, 3) + 1.0),
-          drawn_image_.at(pixel_index));
+      drawn_image_.at(pixel_index) =
+          std::max(-std::powf(distance / brush_size, 3) + 1.0f,
+                   drawn_image_.at(pixel_index));
     }
   }
 
@@ -88,10 +82,10 @@ void main_presenter::draw_image() {
   drawing_view_->draw_grid(drawn_image_);
 }
 
-void main_presenter::propagate() {
+int main_presenter::propagate() {
   Eigen::Map<Eigen::VectorXf> input{drawn_image_.data(),
                                     shared::GRID_SIZE * shared::GRID_SIZE};
-  model_->predict(input);
+  return model_->predict(input);
 }
 
 } // namespace presenters

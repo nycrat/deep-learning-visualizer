@@ -43,8 +43,10 @@ private:
   /**
    * Runs a forward pass over the drawn image, so that the network view has
    * activations to draw.
+   *
+   * @return The predicted value.
    */
-  void propagate();
+  int propagate();
 
   std::unique_ptr<models::mnist> model_;
   std::unique_ptr<views::pixel_grid_view> drawing_view_;
