@@ -38,7 +38,7 @@ private:
     const float height{(shared::GRID_TOP - shared::GRID_BOTTOM) /
                        shared::GRID_SIZE};
 
-    renderer_.get().set_color(Eigen::Vector3f{1.0f, 1.0f, 1.0f} * value);
+    renderer_.get().set_color(Eigen::Vector4f{1.0f, 1.0f, 1.0f, value});
     renderer_.get().draw_quad(anchor + Eigen::Vector2f{0, 0},
                               anchor + Eigen::Vector2f{0, height},
                               anchor + Eigen::Vector2f{width, height},

@@ -45,8 +45,8 @@ void network_view_gl::draw_input_layer(const models::layer &layer) {
 
     const auto anchor{input_pixel_origin(static_cast<std::size_t>(i), cell)};
 
-    renderer_.get().set_color(Eigen::Vector3f{1.0f, 1.0f, 1.0f} *
-                              std::fmin(value, 1.0f));
+    renderer_.get().set_color(
+        Eigen::Vector4f{1.0f, 1.0f, 1.0f, std::fmin(value, 1.0f)});
     renderer_.get().draw_quad(
         anchor, anchor + Eigen::Vector2f{cell, 0.0f},
         anchor + Eigen::Vector2f{cell, cell * shared::WINDOW_ASPECT},

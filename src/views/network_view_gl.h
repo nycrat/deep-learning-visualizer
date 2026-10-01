@@ -295,10 +295,10 @@ private:
   static constexpr float HALF{0.5f};
   static constexpr int CIRCLE_SEGMENTS{8};
 
-  static constexpr Eigen::Vector3f NEURON_COLOR{0.85f, 0.87f, 0.95f};
-  static constexpr Eigen::Vector3f POSITIVE_COLOR{0.30f, 0.70f, 1.00f};
-  static constexpr Eigen::Vector3f NEGATIVE_COLOR{1.00f, 0.45f, 0.25f};
-  static constexpr Eigen::Vector3f WINNER_COLOR{0.25f, 1.00f, 0.55f};
+  static constexpr Eigen::Vector4f NEURON_COLOR{0.85f, 0.87f, 0.95f, 1.00f};
+  static constexpr Eigen::Vector4f POSITIVE_COLOR{0.30f, 0.70f, 1.00f, 0.20f};
+  static constexpr Eigen::Vector4f NEGATIVE_COLOR{1.00f, 0.45f, 0.25f, 0.20f};
+  static constexpr Eigen::Vector4f WINNER_COLOR{0.25f, 1.00f, 0.55f, 1.00f};
 };
 
 } // namespace views

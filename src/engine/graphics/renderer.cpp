@@ -7,6 +7,10 @@
 namespace engine::graphics {
 
 renderer::renderer() {
+  // Enable opacity for fragment rendering
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
   vertices_.reserve(MAX_VERTICES);
 
   glGenVertexArrays(1, &vao_);
@@ -25,7 +29,7 @@ renderer::renderer() {
 
   // Color attribute
   glVertexAttribPointer(
-      1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex),
+      1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex),
       // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
       reinterpret_cast<void *>(offsetof(vertex, color)));
   glEnableVertexAttribArray(1);
