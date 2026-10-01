@@ -9,5 +9,5 @@ var classengine_1_1graphics_1_1renderer =
     [ "draw_triangle", "classengine_1_1graphics_1_1renderer.html#ac16118fd20690a46a2c128b700f53380", null ],
     [ "end_frame", "classengine_1_1graphics_1_1renderer.html#a4ca73282c1e5194bb39e4eef8da4198a", null ],
     [ "is_full", "classengine_1_1graphics_1_1renderer.html#a5d73dae441bd1d3a10dd8b4c92d906ab", null ],
-    [ "set_color", "classengine_1_1graphics_1_1renderer.html#ae1c816c3af63d66a8145a5585b7892be", null ]
+    [ "set_color", "classengine_1_1graphics_1_1renderer.html#adff65263a248618aa0aae10798660d98", null ]
 ];

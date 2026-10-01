@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('pixel__grid__view__gl_8h_source.html',
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> height{(shared::GRID_TOP - shared::GRID_BOTTOM) /</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                       shared::GRID_SIZE};</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    renderer_.get().set_color(Eigen::Vector3f{1.0f, 1.0f, 1.0f} * value);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    renderer_.get().set_color(Eigen::Vector4f{1.0f, 1.0f, 1.0f, value});</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    renderer_.get().draw_quad(anchor + Eigen::Vector2f{0, 0},</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                              anchor + Eigen::Vector2f{0, height},</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                              anchor + Eigen::Vector2f{width, height},</div>

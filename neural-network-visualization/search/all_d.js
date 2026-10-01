@@ -2,7 +2,7 @@ var searchData=
 [
   ['scene_0',['scene',['../classengine_1_1scene.html',1,'engine']]],
   ['scene_2eh_1',['scene.h',['../scene_8h.html',1,'']]],
-  ['set_5fcolor_2',['set_color',['../classengine_1_1graphics_1_1renderer.html#ae1c816c3af63d66a8145a5585b7892be',1,'engine::graphics::renderer']]],
+  ['set_5fcolor_2',['set_color',['../classengine_1_1graphics_1_1renderer.html#adff65263a248618aa0aae10798660d98',1,'engine::graphics::renderer']]],
   ['set_5fscene_3',['set_scene',['../classengine_1_1application.html#aaf0be68edf3966bb52391e20eb6b6312',1,'engine::application']]],
   ['shader_4',['shader',['../classengine_1_1graphics_1_1shader.html',1,'engine::graphics::shader'],['../classengine_1_1graphics_1_1shader.html#a3bec33ae39d22c9cf3e1be739fc4e5f2',1,'engine::graphics::shader::shader()']]],
   ['shader_2eh_5',['shader.h',['../shader_8h.html',1,'']]],
