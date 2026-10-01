@@ -7,6 +7,10 @@
 namespace engine::graphics {
 
 renderer::renderer() {
+  // Enable opacity for fragment rendering
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
   vertices_.reserve(MAX_VERTICES);
 
   glGenVertexArrays(1, &vao_);
@@ -25,7 +29,7 @@ renderer::renderer() {
 
   // Color attribute
   glVertexAttribPointer(
-      1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex),
+      1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex),
       // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
       reinterpret_cast<void *>(offsetof(vertex, color)));
   glEnableVertexAttribArray(1);
@@ -57,6 +61,10 @@ void renderer::end_frame() {
 void renderer::draw_triangle(const Eigen::Vector2f &p1,
                              const Eigen::Vector2f &p2,
                              const Eigen::Vector2f &p3) {
+  if (is_full()) {
+    return;
+  }
+
   vertices_.emplace_back(p1, color_);
   vertices_.emplace_back(p2, color_);
   vertices_.emplace_back(p3, color_);
@@ -64,12 +72,20 @@ void renderer::draw_triangle(const Eigen::Vector2f &p1,
 
 void renderer::draw_quad(const Eigen::Vector2f &p1, const Eigen::Vector2f &p2,
                          const Eigen::Vector2f &p3, const Eigen::Vector2f &p4) {
+  if (is_full()) {
+    return;
+  }
+
   draw_triangle(p1, p2, p3);
   draw_triangle(p3, p4, p1);
 }
 
 void renderer::draw_line(const Eigen::Vector2f &p1, const Eigen::Vector2f &p2,
                          float thickness) {
+  if (is_full()) {
+    return;
+  }
+
   const auto parallel{(p1 - p2).normalized() * thickness / 2.0f};
   const Eigen::Vector2f perp{parallel.y(), -parallel.x()};
   draw_quad(p1 - perp, p1 + perp, p2 + perp, p2 - perp);

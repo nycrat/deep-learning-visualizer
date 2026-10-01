@@ -16,6 +16,13 @@ class network {
 public:
   void to_file(const std::filesystem::path &file_path);
 
+  /**
+   * The layers of the network, ordered from input to output.
+   */
+  [[nodiscard]] const std::vector<layer> &layers() const {
+    return layers_;
+  }
+
 protected:
   explicit network(const std::vector<int> &layer_sizes);
 

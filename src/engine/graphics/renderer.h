@@ -47,10 +47,17 @@ public:
   /**
    * Sets the current color used when buffering shapes to be drawn.
    *
-   * @param color A RGB color vector.
+   * @param color A RGBA color vector.
    */
-  void set_color(const Eigen::Vector3f &color) {
+  void set_color(const Eigen::Vector4f &color) {
     color_ = color;
+  }
+
+  /**
+   * Checks if the frame has no room left for another shape.
+   */
+  [[nodiscard]] bool is_full() const {
+    return vertices_.size() + VERTICES_PER_QUAD > MAX_VERTICES;
   }
 
   /**
@@ -94,17 +101,18 @@ public:
 private:
   struct vertex {
     Eigen::Vector2f position;
-    Eigen::Vector3f color;
+    Eigen::Vector4f color;
   };
 
   shader program_{"src/engine/graphics/shaders/generic.vert",
                   "src/engine/graphics/shaders/generic.frag"};
   std::vector<vertex> vertices_{};
-  Eigen::Vector3f color_{};
+  Eigen::Vector4f color_{};
   unsigned int vao_{};
   unsigned int vbo_{};
 
-  static constexpr auto MAX_VERTICES{100000};
+  static constexpr auto MAX_VERTICES{100000uz};
+  static constexpr auto VERTICES_PER_QUAD{6uz};
 };
 
 } // namespace engine::graphics

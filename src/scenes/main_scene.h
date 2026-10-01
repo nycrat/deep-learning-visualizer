@@ -6,18 +6,20 @@
 #include "engine/input/event_bus.h"
 #include "engine/scene.h"
 #include "models/mnist.h"
-#include "presenters/pixel_grid_presenter.h"
+#include "presenters/main_presenter.h"
+#include "views/network_view_gl.h"
 #include "views/pixel_grid_view_gl.h"
 #include <memory>
 
 namespace scenes {
 
-class pixel_grid_scene : public engine::scene {
+class main_scene : public engine::scene {
 public:
-  pixel_grid_scene(engine::graphics::renderer &renderer,
-                   engine::input::event_bus &bus)
+  main_scene(engine::graphics::renderer &renderer,
+             engine::input::event_bus &bus)
       : presenter_(std::make_unique<models::mnist>("data/mnist/trained.mlp"),
-                   std::make_unique<views::pixel_grid_view_gl>(renderer), bus) {
+                   std::make_unique<views::pixel_grid_view_gl>(renderer),
+                   std::make_unique<views::network_view_gl>(renderer), bus) {
   }
 
   void render() override {
@@ -28,7 +30,7 @@ public:
   }
 
 private:
-  presenters::pixel_grid_presenter presenter_;
+  presenters::main_presenter presenter_;
 };
 
 } // namespace scenes

@@ -3,6 +3,7 @@
 /** @file */
 
 #include "engine/graphics/renderer.h"
+#include "shared/layout.h"
 #include "views/pixel_grid_view.h"
 #include <functional>
 
@@ -27,15 +28,21 @@ public:
 private:
   void draw_square(int x, int y, float value) {
     const Eigen::Vector2f anchor{
-        static_cast<float>(x) * 2 / shared::GRID_SIZE - 1.0f,
-        static_cast<float>(y) * 2 / shared::GRID_SIZE - 1.0f};
-    const float size{2.0f / shared::GRID_SIZE};
+        shared::GRID_LEFT + (static_cast<float>(x) / shared::GRID_SIZE) *
+                                (shared::GRID_RIGHT - shared::GRID_LEFT),
+        shared::GRID_BOTTOM + (static_cast<float>(y) / shared::GRID_SIZE) *
+                                  (shared::GRID_TOP - shared::GRID_BOTTOM)};
 
-    renderer_.get().set_color(Eigen::Vector3f{1.0f, 1.0f, 1.0f} * value);
+    const float width{(shared::GRID_RIGHT - shared::GRID_LEFT) /
+                      shared::GRID_SIZE};
+    const float height{(shared::GRID_TOP - shared::GRID_BOTTOM) /
+                       shared::GRID_SIZE};
+
+    renderer_.get().set_color(Eigen::Vector4f{1.0f, 1.0f, 1.0f, value});
     renderer_.get().draw_quad(anchor + Eigen::Vector2f{0, 0},
-                              anchor + Eigen::Vector2f{0, size},
-                              anchor + Eigen::Vector2f{size, size},
-                              anchor + Eigen::Vector2f{size, 0});
+                              anchor + Eigen::Vector2f{0, height},
+                              anchor + Eigen::Vector2f{width, height},
+                              anchor + Eigen::Vector2f{width, 0});
   }
 
   std::reference_wrapper<engine::graphics::renderer> renderer_;

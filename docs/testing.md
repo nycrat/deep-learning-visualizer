@@ -54,7 +54,7 @@ Test files mirror the directory they cover under `src/`:
 | `src/models/network.h`                  | `tests/models/network_test.cpp`                  |
 | `src/models/mnist.h`                    | `tests/models/mnist_test.cpp`                    |
 | `src/engine/input/event_bus.h`          | `tests/engine/event_bus_test.cpp`                |
-| `src/presenters/pixel_grid_presenter.h` | `tests/presenters/pixel_grid_presenter_test.cpp` |
+| `src/presenters/main_presenter.h` | `tests/presenters/main_presenter_test.cpp` |
 
 Shared test utilities live in `tests/test_helpers.h`.
 
@@ -124,7 +124,7 @@ Anything requiring an OpenGL context is out of reach for unit tests:
 `engine::window`, `engine::graphics::renderer`, `engine::graphics::shader`, and
 `views::pixel_grid_view_gl`. These need a real display, a shader compile, and a
 draw call to observe anything. `views::pixel_grid_view` is an abstract interface
-precisely so that `presenters::pixel_grid_presenter` can be tested without one, via
+precisely so that `presenters::main_presenter` can be tested without one, via
 `recording_view`.
 
 `engine::application` wires the window, the scene, and the presenters together and is
